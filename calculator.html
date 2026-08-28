@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>سلمان UTASA - حاسبة المعدل التراكمي</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ============================================================
+                   ROOT – New color palette (matching main pages)
+                ============================================================ */
+    :root {
+      --primary: #6c5ce7;
+      --primary-light: #a29bfe;
+      --primary-dark: #5a4bd1;
+      --secondary: #00cec9;
+      --secondary-light: #81ecec;
+      --success: #00b894;
+      --light-bg: #f0f2f8;
+      --glass-bg: rgba(255, 255, 255, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.9);
+      --text-dark: #2d2f4a;
+      --text-muted: #6c7293;
+      --text-light: #8c92b3;
+      --border-radius: 24px;
+      --box-shadow: 0 20px 60px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.02);
+      --transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* ============================================================
+                   RESET & BASE
+                ============================================================ */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Cairo", sans-serif;
+      background: #f0f2f8;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(108, 92, 231, 0.07) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(0, 206, 201, 0.06) 0%, transparent 50%);
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding: 20px;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* ============================================================
+                   FLOATING ORBS (matching main pages)
+                ============================================================ */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    .orb.one {
+      width: 350px;
+      height: 350px;
+      background: rgba(108, 92, 231, 0.12);
+      top: -140px;
+      left: -120px;
+      animation: floatOrb1 14s ease-in-out infinite alternate;
+    }
+
+    .orb.two {
+      width: 400px;
+      height: 400px;
+      background: rgba(0, 206, 201, 0.08);
+      bottom: -160px;
+      right: -140px;
+      animation: floatOrb2 16s ease-in-out infinite alternate;
+    }
+
+    .orb.three {
+      width: 280px;
+      height: 280px;
+      background: rgba(162, 155, 254, 0.10);
+      top: 50%;
+      left: 60%;
+      animation: floatOrb3 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatOrb1 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(60px, 50px) scale(1.1); }
+    }
+    @keyframes floatOrb2 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-70px, -60px) scale(1.15); }
+    }
+    @keyframes floatOrb3 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-50px, 30px) scale(1.2); }
+    }
+
+    /* ============================================================
+                   CONTAINER
+                ============================================================ */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ============================================================
+                   BACK BUTTON
+                ============================================================ */
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #5a5f7a;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 10px 22px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      transition: 0.3s ease;
+      margin-bottom: 20px;
+    }
+    .back i {
+      font-size: 14px;
+      transition: 0.3s;
+    }
+    .back:hover {
+      background: #fff;
+      color: var(--primary);
+      box-shadow: 0 4px 20px rgba(108, 92, 231, 0.15);
+      transform: translateX(-4px);
+    }
+    .back:hover i {
+      transform: translateX(-4px);
+    }
+
+    /* ============================================================
+                   HEADER – Glass with gradient accent
+                ============================================================ */
+    header {
+      text-align: center;
+      padding: 30px 20px 25px;
+      border-radius: var(--border-radius);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: var(--box-shadow);
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(108, 92, 231, 0.05) 0%, transparent 70%);
+      transform: rotate(30deg);
+    }
+
+    header h1 {
+      font-family: "Pacifico", cursive;
+      font-size: 2.4rem;
+      margin: 0;
+      background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 40%, #00cec9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 4px 16px rgba(108, 92, 231, 0.12));
+      position: relative;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      margin: 8px 0 0;
+      font-size: 1rem;
+      color: var(--text-muted);
+      position: relative;
+      font-weight: 500;
+    }
+
+    /* ============================================================
+                   CARDS – Glass morphism
+                ============================================================ */
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      padding: 24px 20px;
+      border-radius: var(--border-radius);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      box-shadow: 0 30px 80px rgba(108, 92, 231, 0.06), 0 8px 24px rgba(0, 0, 0, 0.02);
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+    }
+
+    .card-title i {
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    /* ============================================================
+                   FORM INPUTS
+                ============================================================ */
+    .input-group {
+      margin-bottom: 14px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: var(--text-dark);
+      font-size: 0.9rem;
+    }
+
+    .input-group input,
+    .input-group select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid rgba(226, 232, 240, 0.6);
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-family: "Cairo", sans-serif;
+      background: rgba(255, 255, 255, 0.6);
+      transition: var(--transition);
+      color: var(--text-dark);
+    }
+
+    .input-group input:focus,
+    .input-group select:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.10);
+      background: #fff;
+    }
+
+    .input-group input::placeholder {
+      color: var(--text-light);
+    }
+
+    .input-row {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    @media (min-width: 480px) {
+      .input-row {
+        flex-direction: row;
+      }
+      .input-row .input-group {
+        flex: 1;
+      }
+    }
+
+    /* ============================================================
+                   TABLE – Clean & modern
+                ============================================================ */
+    .table-container {
+      overflow-x: auto;
+      border-radius: 16px;
+      border: 1px solid rgba(226, 232, 240, 0.4);
+      margin: 0 -6px;
+      width: calc(100% + 12px);
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: transparent;
+      min-width: 380px;
+    }
+
+    th, td {
+      padding: 12px 10px;
+      text-align: center;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.3);
+      font-size: 0.9rem;
+    }
+
+    th {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      font-weight: 700;
+      position: sticky;
+      top: 0;
+      font-size: 0.9rem;
+    }
+
+    tr:nth-child(even) {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    tr:hover {
+      background: rgba(108, 92, 231, 0.04);
+    }
+
+    tr.completed {
+      border-right: 3px solid var(--secondary);
+    }
+
+    tr.error {
+      border-right: 3px solid #e63946;
+    }
+
+    td select {
+      padding: 8px 6px;
+      border-radius: 8px;
+      border: 1.5px solid rgba(226, 232, 240, 0.5);
+      background: rgba(255, 255, 255, 0.7);
+      font-family: "Cairo", sans-serif;
+      font-size: 0.85rem;
+      width: 100%;
+      max-width: 120px;
+      transition: var(--transition);
+      color: var(--text-dark);
+    }
+
+    td select:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.08);
+    }
+
+    td select.course-credit {
+      max-width: 70px;
+    }
+
+    /* ============================================================
+                   BUTTONS
+                ============================================================ */
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    @media (min-width: 480px) {
+      .action-buttons {
+        flex-direction: row;
+      }
+    }
+
+    button {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 12px 18px;
+      border: none;
+      cursor: pointer;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: var(--transition);
+      flex: 1;
+      font-family: "Cairo", sans-serif;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(108, 92, 231, 0.25);
+    }
+
+    button.secondary {
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--primary);
+      border: 2px solid rgba(108, 92, 231, 0.15);
+      backdrop-filter: blur(4px);
+    }
+
+    button.secondary:hover {
+      background: #fff;
+      border-color: var(--primary);
+      box-shadow: 0 8px 30px rgba(108, 92, 231, 0.10);
+    }
+
+    button.small {
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      flex: 0 0 auto;
+      min-width: 32px;
+      height: 32px;
+      border-radius: 8px;
+    }
+
+    button.small i {
+      font-size: 0.8rem;
+    }
+
+    .course-actions {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+    }
+
+    .course-actions button {
+      padding: 6px 10px;
+      font-size: 0.75rem;
+      flex: 0 0 auto;
+      min-width: 32px;
+      height: 32px;
+      border-radius: 8px;
+    }
+
+    /* ============================================================
+                   RESULTS SECTION
+                ============================================================ */
+    #result {
+      text-align: center;
+      padding: 28px 20px;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-radius: var(--border-radius);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: var(--box-shadow);
+      margin-top: 24px;
+      transition: var(--transition);
+    }
+
+    #result h2 {
+      font-size: 1.3rem;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    #result > p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
+
+    .result-box {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    @media (min-width: 600px) {
+      .result-box {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+    }
+
+    .result-item {
+      flex: 1;
+      min-width: 140px;
+      max-width: 200px;
+      padding: 18px 14px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      box-shadow: 0 8px 30px rgba(108, 92, 231, 0.20);
+      transition: var(--transition);
+    }
+
+    .result-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(108, 92, 231, 0.25);
+    }
+
+    .result-item:nth-child(2) {
+      background: linear-gradient(135deg, var(--secondary), #00b894);
+      box-shadow: 0 8px 30px rgba(0, 206, 201, 0.20);
+    }
+
+    .result-item:nth-child(3) {
+      background: linear-gradient(135deg, #fd79a8, #e17055);
+      box-shadow: 0 8px 30px rgba(225, 112, 85, 0.20);
+    }
+
+    .result-item h3 {
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+      opacity: 0.9;
+      font-weight: 500;
+    }
+
+    .result-item p {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    /* ============================================================
+                   FOOTER
+                ============================================================ */
+    footer {
+      margin-top: 30px;
+      text-align: center;
+      padding: 20px 16px;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(6px);
+      border-radius: var(--border-radius);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+    }
+
+    footer p {
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    footer a:hover {
+      color: var(--primary-dark);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      border-radius: 50%;
+      font-size: 1rem;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .social-links a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(108, 92, 231, 0.25);
+    }
+
+    /* ============================================================
+                   TOAST NOTIFICATION
+                ============================================================ */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 14px 20px;
+      background: var(--secondary);
+      color: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      z-index: 1000;
+      font-family: "Cairo", sans-serif;
+      font-weight: 500;
+      max-width: 90%;
+    }
+
+    @media (min-width: 480px) {
+      .toast {
+        max-width: 380px;
+      }
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast.error {
+      background: #e63946;
+    }
+
+    /* ============================================================
+                   RESPONSIVE
+                ============================================================ */
+    @media (max-width: 600px) {
+      body { padding: 12px; }
+      header h1 { font-size: 1.8rem; }
+      header { padding: 20px 16px; }
+      .card { padding: 18px 14px; }
+      .result-item { min-width: 100px; padding: 14px 10px; }
+      .result-item p { font-size: 1.4rem; }
+      th, td { padding: 8px 6px; font-size: 0.8rem; }
+      td select { font-size: 0.8rem; padding: 6px 4px; }
+      .back { font-size: 12px; padding: 8px 16px; }
+    }
+
+    @media (max-width: 400px) {
+      header h1 { font-size: 1.5rem; }
+      .result-item { min-width: 80px; }
+      .result-item p { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FLOATING ORBS -->
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <div class="orb three"></div>
+
+  <div class="container">
+
+    <!-- BACK BUTTON -->
+    <a href="index.html" class="back">
+      <i class="fa-solid fa-arrow-right"></i>
+      الصفحة الرئيسية
+    </a>
+
+    <!-- HEADER -->
+    <header>
+      <h1><i class="fas fa-calculator" style="-webkit-text-fill-color: initial; color: var(--primary);"> </i>   SALMAN UTASA   </h1>
+      <p>حاسبة المعدل الفصلي والتراكمي المتقدمة</p>
+    </header>
+
+    <div class="main-content">
+
+      <!-- PREVIOUS RECORD -->
+      <div class="card">
+        <h2 class="card-title"><i class="fas fa-history"></i> السجل الأكاديمي السابق</h2>
+        <div class="input-row">
+          <div class="input-group">
+            <label for="oldGPA">المعدل التراكمي السابق</label>
+            <input type="number" id="oldGPA" step="0.01" min="0" max="4" placeholder="مثال: 3.25">
+          </div>
+          <div class="input-group">
+            <label for="oldCredits">الساعات المنجزة</label>
+            <input type="number" id="oldCredits" min="0" placeholder="مثال: 45">
+          </div>
+        </div>
+      </div>
+
+      <!-- SETTINGS -->
+      <div class="card">
+        <h2 class="card-title"><i class="fas fa-cog"></i> إعدادات الحاسبة</h2>
+        <div class="input-row">
+          <div class="input-group">
+            <label for="gradingScale">نظام التقييم</label>
+            <select id="gradingScale">
+              <option value="standard">قياسي (A-F)</option>
+              <option value="a_plus">مع A+ (4.3)</option>
+              <option value="uk">النظام البريطاني</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="creditSystem">نظام الساعات</label>
+            <select id="creditSystem">
+              <option value="us">ساعات معتمدة (US)</option>
+              <option value="eu">نظام ECTS الأوروبي</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- COURSES -->
+      <div class="card">
+        <h2 class="card-title"><i class="fas fa-book"></i> مواد الفصل الحالي</h2>
+        <div class="table-container">
+          <table id="coursesTable">
+            <thead>
+              <tr>
+                <th>المادة</th>
+                <th>التقدير</th>
+                <th>الساعات</th>
+                <th>إجراء</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Rows generated dynamically -->
+            </tbody>
+          </table>
+        </div>
+        <div class="action-buttons">
+          <button id="addCourseBtn" class="secondary"><i class="fas fa-plus"></i> إضافة مادة</button>
+          <button id="resetCoursesBtn" class="secondary"><i class="fas fa-trash-alt"></i> إعادة تعيين</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTION BUTTONS -->
+    <div class="action-buttons" style="max-width: 450px; margin: 24px auto 0;">
+      <button id="calculateBtn"><i class="fas fa-calculator"></i> احسب المعدل</button>
+      <button id="saveBtn" class="secondary"><i class="fas fa-download"></i> حفظ النتيجة</button>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="result">
+      <h2><i class="fas fa-chart-line" style="color: var(--primary);"></i> النتائج</h2>
+      <p>أدخل بياناتك واضغط على "احسب المعدل" لعرض النتائج</p>
+      <div class="result-box">
+        <div class="result-item">
+          <h3>المعدل الفصلي</h3>
+          <p id="semesterGPA">-</p>
+        </div>
+        <div class="result-item">
+          <h3>المعدل التراكمي</h3>
+          <p id="cumulativeGPA">-</p>
+        </div>
+        <div class="result-item">
+          <h3>إجمالي الساعات</h3>
+          <p id="totalCredits">-</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>📱 تابعني على إنستغرام: <a href="https://instagram.com/salmanutasa" target="_blank">@salmanutasa</a></p>
+      <p>🌐 موقعي الإلكتروني: <a href="https://salmanutasa.my.canva.site" target="_blank">salmanutasa.my.canva.site</a></p>
+      <div class="social-links">
+        <a href="https://instagram.com/salman_utasa" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com/salman_utasa" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.youtube.com/@SALMAN_UTASA/playlists" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMessage">تمت العملية بنجاح!</span>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeCoursesTable();
+      document.getElementById('addCourseBtn').addEventListener('click', addCourseRow);
+      document.getElementById('resetCoursesBtn').addEventListener('click', resetCoursesTable);
+      document.getElementById('calculateBtn').addEventListener('click', calculateGPA);
+      document.getElementById('saveBtn').addEventListener('click', saveResults);
+      loadSavedData();
+    });
+
+    function initializeCoursesTable() {
+      const tableBody = document.querySelector('#coursesTable tbody');
+      tableBody.innerHTML = '';
+      for (let i = 0; i < 3; i++) {
+        addCourseRow();
+      }
+    }
+
+    function addCourseRow() {
+      const tableBody = document.querySelector('#coursesTable tbody');
+      const rowCount = tableBody.children.length + 1;
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>المادة ${rowCount}</td>
+        <td>
+          <select class="course-grade">
+            <option value="">اختر التقدير</option>
+            <option value="A">A (4.0)</option>
+            <option value="A-">A- (3.7)</option>
+            <option value="B+">B+ (3.3)</option>
+            <option value="B">B (3.0)</option>
+            <option value="B-">B- (2.7)</option>
+            <option value="C+">C+ (2.3)</option>
+            <option value="C">C (2.0)</option>
+            <option value="C-">C- (1.7)</option>
+            <option value="D+">D+ (1.3)</option>
+            <option value="D">D (1.0)</option>
+            <option value="F">F (0.0)</option>
+          </select>
+        </td>
+        <td>
+          <select class="course-credit">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+        </td>
+        <td>
+          <div class="course-actions">
+            <button class="secondary small remove-course" title="حذف المادة"><i class="fas fa-times"></i></button>
+          </div>
+        </td>
+      `;
+      tableBody.appendChild(row);
+
+      row.querySelector('.remove-course').addEventListener('click', function() {
+        if (tableBody.children.length > 1) {
+          row.remove();
+        } else {
+          showToast('يجب أن يكون لديك مادة واحدة على الأقل', 'error');
+        }
+      });
+    }
+
+    function resetCoursesTable() {
+      if (confirm('هل أنت متأكد من حذف جميع المواد؟')) {
+        initializeCoursesTable();
+        showToast('تم إعادة تعيين جميع المواد', 'success');
+      }
+    }
+
+    function calculateGPA() {
+      const oldGPA = parseFloat(document.getElementById("oldGPA").value) || 0;
+      const oldCredits = parseInt(document.getElementById("oldCredits").value) || 0;
+      const rows = document.querySelectorAll('#coursesTable tbody tr');
+      let totalPoints = 0;
+      let totalCredits = 0;
+      let hasErrors = false;
+
+      rows.forEach((row, index) => {
+        const gradeSelect = row.querySelector('.course-grade');
+        const creditSelect = row.querySelector('.course-credit');
+
+        if (gradeSelect.value && creditSelect.value) {
+          const grade = gradeSelect.value;
+          const credits = parseInt(creditSelect.value);
+          row.classList.add('completed');
+          row.classList.remove('error');
+          const points = getGradePoints(grade);
+          totalPoints += points * credits;
+          totalCredits += credits;
+        } else if (gradeSelect.value || creditSelect.value) {
+          row.classList.add('error');
+          row.classList.remove('completed');
+          hasErrors = true;
+          showToast(`يرجى إكمال بيانات المادة ${index + 1}`, 'error');
+        } else {
+          row.classList.remove('completed', 'error');
+        }
+      });
+
+      if (hasErrors) return;
+
+      const semesterGPA = totalCredits > 0 ? (totalPoints / totalCredits) : 0;
+      const previousPoints = oldGPA * oldCredits;
+      const cumulativeGPA = (oldCredits + totalCredits) > 0 ? (previousPoints + totalPoints) / (oldCredits + totalCredits) : 0;
+
+      document.getElementById('semesterGPA').textContent = semesterGPA.toFixed(2);
+      document.getElementById('cumulativeGPA').textContent = cumulativeGPA.toFixed(2);
+      document.getElementById('totalCredits').textContent = (oldCredits + totalCredits);
+
+      saveData();
+      showToast('تم حساب المعدل بنجاح! 🎉', 'success');
+    }
+
+    function getGradePoints(grade) {
+      const gradePoints = {
+        "A": 4.0, "A-": 3.7, "B+": 3.3, "B": 3.0,
+        "B-": 2.7, "C+": 2.3, "C": 2.0, "C-": 1.7,
+        "D+": 1.3, "D": 1.0, "F": 0.0
+      };
+      return gradePoints[grade] || 0;
+    }
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toastMessage');
+      toastMessage.textContent = message;
+      toast.className = 'toast';
+      if (type === 'error') {
+        toast.classList.add('error');
+      }
+      toast.classList.add('show');
+      clearTimeout(toast._timeout);
+      toast._timeout = setTimeout(() => { toast.classList.remove('show'); }, 3500);
+    }
+
+    function saveData() {
+      const data = {
+        oldGPA: document.getElementById('oldGPA').value,
+        oldCredits: document.getElementById('oldCredits').value,
+        courses: []
+      };
+      const rows = document.querySelectorAll('#coursesTable tbody tr');
+      rows.forEach((row, index) => {
+        const grade = row.querySelector('.course-grade').value;
+        const credit = row.querySelector('.course-credit').value;
+        data.courses.push({ code: `المادة ${index + 1}`, grade: grade, credit: credit });
+      });
+      localStorage.setItem('gpaCalculatorData', JSON.stringify(data));
+    }
+
+    function loadSavedData() {
+      const savedData = localStorage.getItem('gpaCalculatorData');
+      if (savedData) {
+        const data = JSON.parse(savedData);
+        document.getElementById('oldGPA').value = data.oldGPA || '';
+        document.getElementById('oldCredits').value = data.oldCredits || '';
+        if (data.courses && data.courses.length > 0) {
+          const tableBody = document.querySelector('#coursesTable tbody');
+          tableBody.innerHTML = '';
+          data.courses.forEach((course, index) => {
+            addCourseRow();
+            const rows = tableBody.querySelectorAll('tr');
+            const lastRow = rows[rows.length - 1];
+            if (lastRow) {
+              lastRow.querySelector('.course-grade').value = course.grade || '';
+              lastRow.querySelector('.course-credit').value = course.credit || '3';
+            }
+          });
+        }
+        showToast('تم تحميل البيانات السابقة', 'success');
+      }
+    }
+
+    function saveResults() {
+      const semester = document.getElementById('semesterGPA').textContent;
+      const cumulative = document.getElementById('cumulativeGPA').textContent;
+      const credits = document.getElementById('totalCredits').textContent;
+
+      if (semester === '-') {
+        showToast('يرجى حساب المعدل أولاً', 'error');
+        return;
+      }
+
+      const resultText =
+        `نتائج المعدل - سلمان UTASA\n` +
+        `─────────────────\n` +
+        `المعدل الفصلي: ${semester}\n` +
+        `المعدل التراكمي: ${cumulative}\n` +
+        `إجمالي الساعات: ${credits}\n` +
+        `─────────────────\n` +
+        `تم الحساب بواسطة: salmanutasa.my.canva.site`;
+
+      const blob = new Blob([resultText], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `نتائج_المعدل_${new Date().toLocaleDateString()}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      showToast('تم حفظ النتائج بنجاح! 📥', 'success');
+    }
+  </script>
+
+</body>
+</html>
+```

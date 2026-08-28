@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>شروحات مواد IT – سلمان UTASA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ===== ROOT – same palette as GPA calculator ===== */
+    :root {
+      --primary: #6c5ce7;
+      --primary-light: #a29bfe;
+      --primary-dark: #5a4bd1;
+      --secondary: #00cec9;
+      --secondary-light: #81ecec;
+      --success: #00b894;
+      --light-bg: #f0f2f8;
+      --glass-bg: rgba(255, 255, 255, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.9);
+      --text-dark: #2d2f4a;
+      --text-muted: #6c7293;
+      --text-light: #8c92b3;
+      --border-radius: 24px;
+      --box-shadow: 0 20px 60px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.02);
+      --transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* ===== RESET & BASE ===== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Cairo", sans-serif;
+      background: #f0f2f8;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(108, 92, 231, 0.07) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(0, 206, 201, 0.06) 0%, transparent 50%);
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding: 20px;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* ===== FLOATING ORBS (same) ===== */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    .orb.one {
+      width: 350px;
+      height: 350px;
+      background: rgba(108, 92, 231, 0.12);
+      top: -140px;
+      left: -120px;
+      animation: floatOrb1 14s ease-in-out infinite alternate;
+    }
+
+    .orb.two {
+      width: 400px;
+      height: 400px;
+      background: rgba(0, 206, 201, 0.08);
+      bottom: -160px;
+      right: -140px;
+      animation: floatOrb2 16s ease-in-out infinite alternate;
+    }
+
+    .orb.three {
+      width: 280px;
+      height: 280px;
+      background: rgba(162, 155, 254, 0.10);
+      top: 50%;
+      left: 60%;
+      animation: floatOrb3 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatOrb1 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(60px, 50px) scale(1.1); }
+    }
+    @keyframes floatOrb2 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-70px, -60px) scale(1.15); }
+    }
+    @keyframes floatOrb3 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-50px, 30px) scale(1.2); }
+    }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ===== BACK BUTTON ===== */
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #5a5f7a;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 10px 22px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      transition: 0.3s ease;
+      margin-bottom: 20px;
+    }
+    .back i {
+      font-size: 14px;
+      transition: 0.3s;
+    }
+    .back:hover {
+      background: #fff;
+      color: var(--primary);
+      box-shadow: 0 4px 20px rgba(108, 92, 231, 0.15);
+      transform: translateX(-4px);
+    }
+    .back:hover i {
+      transform: translateX(-4px);
+    }
+
+    /* ===== HEADER – Glass with gradient accent ===== */
+    header {
+      text-align: center;
+      padding: 30px 20px 25px;
+      border-radius: var(--border-radius);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: var(--box-shadow);
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(108, 92, 231, 0.05) 0%, transparent 70%);
+      transform: rotate(30deg);
+    }
+
+    header h1 {
+      font-family: "Pacifico", cursive;
+      font-size: 2.6rem;
+      margin: 0;
+      background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 40%, #00cec9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 4px 16px rgba(108, 92, 231, 0.12));
+      position: relative;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      margin: 8px 0 0;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      position: relative;
+      font-weight: 500;
+    }
+
+    /* ===== CARDS – Glass morphism ===== */
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      padding: 24px 20px;
+      border-radius: var(--border-radius);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      box-shadow: 0 30px 80px rgba(108, 92, 231, 0.06), 0 8px 24px rgba(0, 0, 0, 0.02);
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      margin-bottom: 18px;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+    }
+
+    .card-title i {
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* ===== SUBJECTS GRID ===== */
+    .subjects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 16px;
+    }
+
+    .subject-item {
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(4px);
+      border-radius: 16px;
+      padding: 16px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .subject-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(108, 92, 231, 0.08);
+      background: rgba(255, 255, 255, 0.8);
+      border-color: var(--primary-light);
+    }
+
+    .subject-item i {
+      font-size: 1.6rem;
+      color: var(--primary);
+      width: 36px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .subject-item .subject-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .subject-item .subject-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      display: block;
+      line-height: 1.3;
+    }
+
+    .subject-item .subject-link {
+      font-size: 0.8rem;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 4px;
+      transition: var(--transition);
+    }
+
+    .subject-item .subject-link:hover {
+      color: var(--primary-dark);
+      gap: 8px;
+    }
+
+    .subject-item .subject-link i {
+      font-size: 0.7rem;
+      width: auto;
+      color: currentColor;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      margin-top: 30px;
+      text-align: center;
+      padding: 20px 16px;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(6px);
+      border-radius: var(--border-radius);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+    }
+
+    footer p {
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    footer a:hover {
+      color: var(--primary-dark);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      border-radius: 50%;
+      font-size: 1rem;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .social-links a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(108, 92, 231, 0.25);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      body { padding: 12px; }
+      header h1 { font-size: 2rem; }
+      header { padding: 20px 16px; }
+      .card { padding: 18px 14px; }
+      .subjects-grid {
+        grid-template-columns: 1fr;
+      }
+      .back { font-size: 12px; padding: 8px 16px; }
+    }
+
+    @media (max-width: 400px) {
+      header h1 { font-size: 1.6rem; }
+      .subject-item { padding: 12px 10px; }
+      .subject-item i { font-size: 1.3rem; width: 28px; }
+      .subject-item .subject-name { font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- FLOATING ORBS -->
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <div class="orb three"></div>
+
+  <div class="container">
+    <!-- BACK BUTTON -->
+    <a href="index.html" class="back">
+      <i class="fa-solid fa-arrow-right"></i>
+      الصفحة الرئيسية
+    </a>
+
+    <!-- HEADER -->
+    <header>
+      <h1><i class="fas fa-graduation-cap" style="-webkit-text-fill-color: initial; color: var(--primary);"></i> شروحات مواد IT</h1>
+      <p>قائمة تشغيل شاملة لكل مواد تقنية المعلومات</p>
+    </header>
+
+    <div class="main-content">
+      <!-- SUBJECTS CARD -->
+      <div class="card">
+        <h2 class="card-title"><i class="fas fa-play-circle"></i> قوائم التشغيل على يوتيوب</h2>
+        <div class="subjects-grid" id="subjectsGrid">
+          <!-- generated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>📱 تابعني على إنستغرام: <a href="https://instagram.com/salmanutasa" target="_blank">@salmanutasa</a></p>
+      <p>🌐 موقعي الإلكتروني: <a href="https://salmanutasa.my.canva.site" target="_blank">salmanutasa.my.canva.site</a></p>
+      <div class="social-links">
+        <a href="https://instagram.com/salman_utasa" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com/salman_utasa" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.youtube.com/@SALMAN_UTASA/playlists" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const subjects = [
+        {
+          name: "Advanced Web Technologies",
+          icon: "fa-globe",
+          url: "https://youtube.com/playlist?list=PLaw4yJSjRAQFeQ2HhsRcRgLQMdviKKAeM&si=xV5-deOgjU1_CLo5"
+        },
+        {
+          name: "Web Application Security",
+          icon: "fa-shield-halved",
+          url: "https://youtube.com/playlist?list=PLaw4yJSjRAQFxpomQV26kPqqXsrjYLyrH&si=qyDeEw3NY3nLTIKp"
+        },
+        {
+          name: "Probability and Statistics",
+          icon: "fa-chart-bar",
+          url: "https://youtube.com/playlist?list=PLaw4yJSjRAQEviaEju1H_j-clRJ7Z2G-8&si=cLcSXgS3WUG9ByHj"
+        },
+        {
+          name: "Introduction to Programming",
+          icon: "fa-code",
+          url: "https://youtube.com/playlist?list=PLaw4yJSjRAQGfgnxaYK5AnmvBuHxGbkCJ&si=_W8DYLj8Ed4HMsvz"
+        },
+        {
+          name: "Mobile Application Development",
+          icon: "fa-mobile-screen-button",
+          url: "https://youtube.com/playlist?list=PLaw4yJSjRAQHV-PJEcSM2kmrYn0N2iHnI&si=ZTDi4QNdPd0ukJpK"
+        },
+        {
+          name: "Full-Stack Web Development",
+          icon: "fa-layer-group",
+          url: "https://youtube.com/playlist?list=PLaw4yJSjRAQF35rIKXCQmVKgD6Lf53Ewl&si=Gwl4QiAYgHlDsKbg"
+        },
+        {
+          name: "System Administration",
+          icon: "fa-server",
+          url: "https://youtube.com/playlist?list=PLaw4yJSjRAQFxK0hfQMXfQA049Rj7j1ia&si=G7W3GhfhsSY2cOrM"
+        },
+        {
+          name: "Introduction to Artificial Intelligence",
+          icon: "fa-brain",
+          url: "https://youtube.com/playlist?list=PLaw4yJSjRAQE-dBKflr7DqqmjKGv4gS8B&si=NkQPE5J9hJO8XrEf"
+        },
+        {
+          name: "Computer Architecture & Organization",
+          icon: "fa-microchip",
+          url: "https://youtube.com/playlist?list=PLaw4yJSjRAQH3HSLGs35uv-jRlBMW8Cew&si=vrjjqXShqkJwCixM"
+        },
+        {
+          name: "Mathematics of Computing",
+          icon: "fa-square-root-variable",
+          url: "https://youtube.com/playlist?list=PLaw4yJSjRAQEFJHlvrVFoZjbockWnAHrr&si=X-1m-iD6bfMLAuXc"
+        },
+        {
+          name: "Cloud Computing Fundamentals",
+          icon: "fa-cloud",
+          url: "https://youtube.com/playlist?list=PLaw4yJSjRAQHBnOphEnzlMc7ZF0diQUb-&si=CsNN1ZAVKR5j78aD"
+        },
+        {
+          name: "Web Development II",
+          icon: "fa-pen-to-square",
+          url: "https://youtube.com/playlist?list=PLaw4yJSjRAQEEEGk7kjL9RIlIV0i1tSPB&si=7pJMRC-Bc61NGInv"
+        },
+        {
+          name: "Research Methodology",
+          icon: "fa-flask",
+          url: "https://youtube.com/playlist?list=PLaw4yJSjRAQGkD6VovbyXOe0A8fCTx7IF&si=Ji_4aG0BmkwyE-jB"
+        },
+        {
+          name: "Fundamentals of Computing & Info Systems",
+          icon: "fa-computer",
+          url: "https://youtube.com/playlist?list=PLaw4yJSjRAQErusON8ePhhAv9lqNoHbTr&si=g4V68EFQpR5i5MQ_"
+        },
+        {
+          name: "Project Management & Acquisition",
+          icon: "fa-diagram-project",
+          url: "https://youtube.com/playlist?list=PLaw4yJSjRAQG8HgK5q5E26I_DUC-kFs5G&si=vSdzgfxrBTtGueo4"
+        }
+      ];
+
+      const grid = document.getElementById('subjectsGrid');
+      grid.innerHTML = '';
+
+      subjects.forEach(sub => {
+        const item = document.createElement('div');
+        item.className = 'subject-item';
+        item.innerHTML = `
+          <i class="fas ${sub.icon}"></i>
+          <div class="subject-info">
+            <span class="subject-name">${sub.name}</span>
+            <a href="${sub.url}" target="_blank" class="subject-link">
+              <i class="fa-brands fa-youtube"></i> مشاهدة القائمة
+            </a>
+          </div>
+        `;
+        grid.appendChild(item);
+      });
+    });
+  </script>
+</body>
+</html>
