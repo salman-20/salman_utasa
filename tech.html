@@ -1,283 +1,263 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Packages · Salman UTASA</title>
+<title>Course Packages</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Cairo",sans-serif;
 }
 
 
 body{
-    min-height:100vh;
-    font-family:"Cairo",sans-serif;
-    background:#f0f2f8;
-    color:#2d2f4a;
-    padding:40px 20px;
-    background-image:
-    radial-gradient(circle at 10% 20%,rgba(108,92,231,.08),transparent 50%),
-    radial-gradient(circle at 90% 80%,rgba(0,206,201,.08),transparent 50%);
-}
 
+min-height:100vh;
 
-/* floating lights */
+background:
+radial-gradient(circle at top,#5545ff,#09051c 60%);
 
-.orb{
-    position:fixed;
-    border-radius:50%;
-    filter:blur(80px);
-    opacity:.4;
-}
+color:white;
 
-.one{
-    width:350px;
-    height:350px;
-    background:#6c5ce7;
-    top:-150px;
-    left:-120px;
-}
-
-.two{
-    width:400px;
-    height:400px;
-    background:#00cec9;
-    bottom:-150px;
-    right:-120px;
-}
-
-
-/* container */
-
-.container{
-    max-width:950px;
-    margin:auto;
-    position:relative;
-}
-
-
-/* back */
-
-.back{
-
-display:inline-flex;
-align-items:center;
-gap:10px;
-
-padding:10px 22px;
-
-background:white;
-border-radius:15px;
-
-text-decoration:none;
-color:#555;
-
-box-shadow:0 5px 20px #0001;
-
-margin-bottom:25px;
+padding:30px 15px;
 
 }
 
 
 
-/* title */
+/* Header */
 
-.title{
-
-font-family:"Pacifico";
-text-align:center;
-
-font-size:60px;
-
-background:linear-gradient(135deg,#6c5ce7,#00cec9);
-
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-
-margin-bottom:10px;
-
-}
-
-
-.subtitle{
+.header{
 
 text-align:center;
-
-background:white;
-
-padding:10px 25px;
-
-border-radius:40px;
-
-width:max-content;
-
-margin:auto;
-
-color:#777;
 
 margin-bottom:35px;
 
 }
 
 
-/* glass */
+.header h1{
 
-.glass{
+font-size:45px;
 
-background:rgba(255,255,255,.7);
-
-backdrop-filter:blur(20px);
-
-border-radius:35px;
-
-padding:35px;
-
-box-shadow:0 20px 60px #0001;
+font-weight:800;
 
 }
 
 
-/* cards */
+.header span{
+
+color:#9b8cff;
+
+}
+
+
+
+/* Course container */
+
+
+.course{
+
+max-width:900px;
+
+margin:auto;
+
+background:
+linear-gradient(145deg,#181044,#08051c);
+
+border-radius:30px;
+
+padding:30px;
+
+margin-bottom:35px;
+
+box-shadow:
+0 20px 50px #0008;
+
+border:1px solid #ffffff15;
+
+}
+
+
+
+
+.course-title{
+
+text-align:center;
+
+font-size:32px;
+
+background:
+linear-gradient(90deg,#7d5cff,#00d9ff);
+
+-webkit-background-clip:text;
+
+color:transparent;
+
+font-weight:900;
+
+}
+
+
+
+.teacher{
+
+text-align:center;
+
+margin:15px;
+
+font-size:18px;
+
+color:#ddd;
+
+}
+
+
+
+/* Packages */
+
 
 .packages{
 
 display:grid;
 
-grid-template-columns:repeat(2,1fr);
+grid-template-columns:1fr 1fr;
 
 gap:20px;
 
 }
 
 
-.card{
 
-background:rgba(255,255,255,.65);
+.package{
+
+
+background:#0d0828;
 
 border-radius:25px;
 
 padding:25px;
 
-border:1px solid #ffffffaa;
-
-transition:.3s;
-
-text-decoration:none;
-
-color:#2d2f4a;
-
-}
-
-
-.card:hover{
-
-transform:translateY(-8px);
-
-box-shadow:0 20px 40px #6c5ce733;
+border:1px solid #ffffff15;
 
 }
 
 
 
-.icon{
+.package h2{
 
-width:55px;
-height:55px;
+background:
+linear-gradient(90deg,#754cff,#a000ff);
 
-border-radius:18px;
-
-display:flex;
-
-align-items:center;
-justify-content:center;
-
-font-size:25px;
-
-color:white;
-
-background:linear-gradient(135deg,#6c5ce7,#a29bfe);
-
-margin-bottom:15px;
-
-}
-
-
-.card h3{
-
-font-size:20px;
-
-margin-bottom:8px;
-
-}
-
-
-.card p{
-
-font-size:14px;
-
-color:#777;
-
-line-height:1.8;
-
-}
-
-
-.price{
-
-margin-top:15px;
-
-font-size:22px;
-
-font-weight:800;
-
-color:#6c5ce7;
-
-}
-
-
-
-.button{
-
-display:block;
-
-margin-top:15px;
-
-background:linear-gradient(135deg,#6c5ce7,#00cec9);
-
-color:white;
-
-padding:10px;
+padding:12px;
 
 border-radius:30px;
 
 text-align:center;
 
+font-size:25px;
+
 }
 
 
-/* footer */
 
-.footer{
+.chapters{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:10px;
+
+margin:20px 0;
+
+}
+
+
+.chapters span{
+
+background:#050318;
+
+padding:8px 18px;
+
+border-radius:20px;
+
+border:1px solid #392c8d;
+
+}
+
+
+
+.details{
+
+line-height:2;
+
+font-size:15px;
+
+color:#eee;
+
+}
+
+
+
+.price{
+
+font-size:35px;
+
+font-weight:900;
 
 text-align:center;
 
-margin-top:30px;
+margin:15px;
 
-color:#888;
+color:#fff;
 
 }
 
+
+.price small{
+
+font-size:18px;
+
+}
+
+
+
+button{
+
+width:100%;
+
+padding:12px;
+
+border:none;
+
+border-radius:30px;
+
+background:
+linear-gradient(90deg,#694cff,#00d9ff);
+
+color:white;
+
+font-size:18px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+
+
+/* mobile */
 
 
 @media(max-width:700px){
@@ -288,13 +268,22 @@ grid-template-columns:1fr;
 
 }
 
-.title{
 
-font-size:40px;
+.header h1{
+
+font-size:35px;
+
+}
+
+
+.course-title{
+
+font-size:25px;
 
 }
 
 }
+
 
 
 </style>
@@ -305,155 +294,154 @@ font-size:40px;
 <body>
 
 
-<div class="orb one"></div>
-<div class="orb two"></div>
+<div class="header">
 
-
-
-<div class="container">
-
-
-<a class="back" href="index.html">
-
-<i class="fa-solid fa-arrow-right"></i>
-
-الصفحة الرئيسية
-
-</a>
-
-
-
-<h1 class="title">
-SALMAN UTASA
+<h1>
+Tech <span>Packages</span>
 </h1>
 
-
-<div class="subtitle">
-
-الباقات التعليمية والشروحات
+<p>
+شرح مواد جامعة التقنية والعلوم التطبيقية
+</p>
 
 </div>
 
 
 
-<div class="glass">
+<!-- COURSE 1 -->
+
+
+<div class="course">
+
+
+<h1 class="course-title">
+Introduction to Programming
+</h1>
+
+
+<div class="teacher">
+
+الأستاذ: سلمان البلوشي
+
+</div>
+
 
 
 <div class="packages">
 
 
 
-<a class="card" href="#">
+<!-- MIDTERM -->
 
-<div class="icon">
-<i class="fa-solid fa-book"></i>
-</div>
 
-<h3>
+<div class="package">
+
+
+<h2>
 باقة الميدتيرم
-</h3>
+</h2>
 
-<p>
-شرح أهم المواضيع قبل اختبار الميدتيرم مع تطبيقات وأمثلة.
-</p>
+
+<div class="chapters">
+
+<span>تشابتر 2</span>
+<span>تشابتر 3</span>
+<span>تشابتر 4</span>
+
+</div>
+
+
+
+<div class="details">
+
+✓ شرح واضح ومركز لأهم المفاهيم
+
+<br>
+
+✓ شرح الأكواد مع تطبيق عملي
+
+<br>
+
+✓ مراجعة قبل الاختبار
+
+</div>
+
+
 
 <div class="price">
-5 ريال عماني
+
+5 <small>ريال عماني فقط</small>
+
 </div>
 
 
-<div class="button">
-اشترك الآن
+<button>
+اشتراك
+</button>
+
+
 </div>
 
-</a>
 
 
 
 
-<a class="card" href="#">
+<!-- FINAL -->
 
-<div class="icon">
-<i class="fa-solid fa-graduation-cap"></i>
-</div>
 
-<h3>
+<div class="package">
+
+
+<h2>
 باقة الفاينل
-</h3>
+</h2>
 
-<p>
-شرح شامل لمراجعة الفاينل مع تلخيص وترتيب أهم النقاط.
-</p>
+
+<div class="chapters">
+
+<span>تشابتر 5</span>
+<span>تشابتر 6</span>
+<span>تشابتر 7</span>
+<span>تشابتر 8</span>
+<span>تشابتر 9</span>
+<span>تشابتر 10</span>
+<span>تشابتر 11</span>
+
+
+</div>
+
+
+
+<div class="details">
+
+✓ شرح شامل ومنظم للشباتر
+
+<br>
+
+✓ ملخص أهم النقاط
+
+<br>
+
+✓ تطبيقات وأمثلة
+
+</div>
+
+
 
 <div class="price">
-6 ريال عماني
+
+6 <small>ريال عماني فقط</small>
+
 </div>
 
 
-<div class="button">
-اشترك الآن
+
+<button>
+اشتراك
+</button>
+
+
 </div>
-
-</a>
-
-
-
-
-
-<a class="card" href="#">
-
-<div class="icon">
-<i class="fa-solid fa-file-lines"></i>
-</div>
-
-<h3>
-باقة الملخصات
-</h3>
-
-<p>
-ملخصات مرتبة وسهلة للمذاكرة قبل الاختبارات.
-</p>
-
-<div class="price">
-3 ريال عماني
-</div>
-
-
-<div class="button">
-اشترك الآن
-</div>
-
-</a>
-
-
-
-
-
-
-<a class="card" href="#">
-
-<div class="icon">
-<i class="fa-solid fa-video"></i>
-</div>
-
-<h3>
-باقة الشروحات المسجلة
-</h3>
-
-<p>
-فيديوهات شرح للمحاضرات بطريقة مبسطة.
-</p>
-
-<div class="price">
-حسب المادة
-</div>
-
-
-<div class="button">
-التفاصيل
-</div>
-
-</a>
 
 
 
@@ -464,15 +452,11 @@ SALMAN UTASA
 
 
 
-<div class="footer">
-
-© 2026 سلمان يوتاسا
-
-</div>
 
 
+<!-- ADD MORE COURSES HERE -->
 
-</div>
+
 
 
 </body>
