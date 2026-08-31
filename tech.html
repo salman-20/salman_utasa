@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Packages · Salman UTASA</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+body{
+    min-height:100vh;
+    font-family:"Cairo",sans-serif;
+    background:#f0f2f8;
+    color:#2d2f4a;
+    padding:40px 20px;
+    background-image:
+    radial-gradient(circle at 10% 20%,rgba(108,92,231,.08),transparent 50%),
+    radial-gradient(circle at 90% 80%,rgba(0,206,201,.08),transparent 50%);
+}
+
+
+/* floating lights */
+
+.orb{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(80px);
+    opacity:.4;
+}
+
+.one{
+    width:350px;
+    height:350px;
+    background:#6c5ce7;
+    top:-150px;
+    left:-120px;
+}
+
+.two{
+    width:400px;
+    height:400px;
+    background:#00cec9;
+    bottom:-150px;
+    right:-120px;
+}
+
+
+/* container */
+
+.container{
+    max-width:950px;
+    margin:auto;
+    position:relative;
+}
+
+
+/* back */
+
+.back{
+
+display:inline-flex;
+align-items:center;
+gap:10px;
+
+padding:10px 22px;
+
+background:white;
+border-radius:15px;
+
+text-decoration:none;
+color:#555;
+
+box-shadow:0 5px 20px #0001;
+
+margin-bottom:25px;
+
+}
+
+
+
+/* title */
+
+.title{
+
+font-family:"Pacifico";
+text-align:center;
+
+font-size:60px;
+
+background:linear-gradient(135deg,#6c5ce7,#00cec9);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+margin-bottom:10px;
+
+}
+
+
+.subtitle{
+
+text-align:center;
+
+background:white;
+
+padding:10px 25px;
+
+border-radius:40px;
+
+width:max-content;
+
+margin:auto;
+
+color:#777;
+
+margin-bottom:35px;
+
+}
+
+
+/* glass */
+
+.glass{
+
+background:rgba(255,255,255,.7);
+
+backdrop-filter:blur(20px);
+
+border-radius:35px;
+
+padding:35px;
+
+box-shadow:0 20px 60px #0001;
+
+}
+
+
+/* cards */
+
+.packages{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:20px;
+
+}
+
+
+.card{
+
+background:rgba(255,255,255,.65);
+
+border-radius:25px;
+
+padding:25px;
+
+border:1px solid #ffffffaa;
+
+transition:.3s;
+
+text-decoration:none;
+
+color:#2d2f4a;
+
+}
+
+
+.card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 20px 40px #6c5ce733;
+
+}
+
+
+
+.icon{
+
+width:55px;
+height:55px;
+
+border-radius:18px;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+font-size:25px;
+
+color:white;
+
+background:linear-gradient(135deg,#6c5ce7,#a29bfe);
+
+margin-bottom:15px;
+
+}
+
+
+.card h3{
+
+font-size:20px;
+
+margin-bottom:8px;
+
+}
+
+
+.card p{
+
+font-size:14px;
+
+color:#777;
+
+line-height:1.8;
+
+}
+
+
+.price{
+
+margin-top:15px;
+
+font-size:22px;
+
+font-weight:800;
+
+color:#6c5ce7;
+
+}
+
+
+
+.button{
+
+display:block;
+
+margin-top:15px;
+
+background:linear-gradient(135deg,#6c5ce7,#00cec9);
+
+color:white;
+
+padding:10px;
+
+border-radius:30px;
+
+text-align:center;
+
+}
+
+
+/* footer */
+
+.footer{
+
+text-align:center;
+
+margin-top:30px;
+
+color:#888;
+
+}
+
+
+
+@media(max-width:700px){
+
+.packages{
+
+grid-template-columns:1fr;
+
+}
+
+.title{
+
+font-size:40px;
+
+}
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="orb one"></div>
+<div class="orb two"></div>
+
+
+
+<div class="container">
+
+
+<a class="back" href="index.html">
+
+<i class="fa-solid fa-arrow-right"></i>
+
+الصفحة الرئيسية
+
+</a>
+
+
+
+<h1 class="title">
+SALMAN UTASA
+</h1>
+
+
+<div class="subtitle">
+
+الباقات التعليمية والشروحات
+
+</div>
+
+
+
+<div class="glass">
+
+
+<div class="packages">
+
+
+
+<a class="card" href="#">
+
+<div class="icon">
+<i class="fa-solid fa-book"></i>
+</div>
+
+<h3>
+باقة الميدتيرم
+</h3>
+
+<p>
+شرح أهم المواضيع قبل اختبار الميدتيرم مع تطبيقات وأمثلة.
+</p>
+
+<div class="price">
+5 ريال عماني
+</div>
+
+
+<div class="button">
+اشترك الآن
+</div>
+
+</a>
+
+
+
+
+<a class="card" href="#">
+
+<div class="icon">
+<i class="fa-solid fa-graduation-cap"></i>
+</div>
+
+<h3>
+باقة الفاينل
+</h3>
+
+<p>
+شرح شامل لمراجعة الفاينل مع تلخيص وترتيب أهم النقاط.
+</p>
+
+<div class="price">
+6 ريال عماني
+</div>
+
+
+<div class="button">
+اشترك الآن
+</div>
+
+</a>
+
+
+
+
+
+<a class="card" href="#">
+
+<div class="icon">
+<i class="fa-solid fa-file-lines"></i>
+</div>
+
+<h3>
+باقة الملخصات
+</h3>
+
+<p>
+ملخصات مرتبة وسهلة للمذاكرة قبل الاختبارات.
+</p>
+
+<div class="price">
+3 ريال عماني
+</div>
+
+
+<div class="button">
+اشترك الآن
+</div>
+
+</a>
+
+
+
+
+
+
+<a class="card" href="#">
+
+<div class="icon">
+<i class="fa-solid fa-video"></i>
+</div>
+
+<h3>
+باقة الشروحات المسجلة
+</h3>
+
+<p>
+فيديوهات شرح للمحاضرات بطريقة مبسطة.
+</p>
+
+<div class="price">
+حسب المادة
+</div>
+
+
+<div class="button">
+التفاصيل
+</div>
+
+</a>
+
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="footer">
+
+© 2026 سلمان يوتاسا
+
+</div>
+
+
+
+</div>
+
+
+</body>
+</html>
