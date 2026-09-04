@@ -8,13 +8,19 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Pacifico&display=swap"
+    rel="stylesheet"
+  />
 
   <!-- Font Awesome 6 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
 
   <style>
-    /* ---------- RESET & BASE (light & clean, matching main page) ---------- */
+    /* ---------- RESET & BASE ---------- */
     * {
       margin: 0;
       padding: 0;
@@ -29,12 +35,20 @@
       justify-content: center;
       padding: 40px 20px;
       background-image:
-        radial-gradient(circle at 10% 20%, rgba(108, 92, 231, 0.07) 0%, transparent 50%),
-        radial-gradient(circle at 90% 80%, rgba(0, 206, 201, 0.06) 0%, transparent 50%);
+        radial-gradient(
+          circle at 10% 20%,
+          rgba(108, 92, 231, 0.07) 0%,
+          transparent 50%
+        ),
+        radial-gradient(
+          circle at 90% 80%,
+          rgba(0, 206, 201, 0.06) 0%,
+          transparent 50%
+        );
       position: relative;
     }
 
-    /* ---------- FLOATING ORBS (same as main) ---------- */
+    /* ---------- FLOATING ORBS ---------- */
     .orb {
       position: fixed;
       border-radius: 50%;
@@ -65,23 +79,37 @@
     .orb.three {
       width: 280px;
       height: 280px;
-      background: rgba(162, 155, 254, 0.10);
+      background: rgba(162, 155, 254, 0.1);
       top: 50%;
       left: 60%;
       animation: floatOrb3 18s ease-in-out infinite alternate;
     }
 
     @keyframes floatOrb1 {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(60px, 50px) scale(1.1); }
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+      100% {
+        transform: translate(60px, 50px) scale(1.1);
+      }
     }
+
     @keyframes floatOrb2 {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(-70px, -60px) scale(1.15); }
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+      100% {
+        transform: translate(-70px, -60px) scale(1.15);
+      }
     }
+
     @keyframes floatOrb3 {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(-50px, 30px) scale(1.2); }
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+      100% {
+        transform: translate(-50px, 30px) scale(1.2);
+      }
     }
 
     /* ---------- CONTAINER ---------- */
@@ -94,7 +122,7 @@
       z-index: 2;
     }
 
-    /* ---------- BACK BUTTON (updated) ---------- */
+    /* ---------- BACK BUTTON ---------- */
     .back {
       align-self: flex-start;
       display: flex;
@@ -113,27 +141,35 @@
       transition: 0.3s ease;
       margin-bottom: 30px;
     }
+
     .back i {
       font-size: 14px;
       transition: 0.3s;
     }
+
     .back:hover {
       background: #fff;
       color: #6c5ce7;
       box-shadow: 0 4px 20px rgba(108, 92, 231, 0.15);
       transform: translateX(-4px);
     }
+
     .back:hover i {
       transform: translateX(-4px);
     }
 
-    /* ---------- TITLE (same gradient as main) ---------- */
+    /* ---------- TITLE ---------- */
     .title {
       font-family: "Pacifico", cursive;
       font-size: clamp(42px, 6vw, 68px);
       text-align: center;
       margin-bottom: 4px;
-      background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 40%, #00cec9 100%);
+      background: linear-gradient(
+        135deg,
+        #6c5ce7 0%,
+        #a29bfe 40%,
+        #00cec9 100%
+      );
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -156,6 +192,7 @@
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
       animation: fadeUp 0.9s ease;
     }
+
     .subtitle span {
       background: linear-gradient(135deg, #6c5ce7, #a29bfe);
       -webkit-background-clip: text;
@@ -164,7 +201,7 @@
       font-weight: 700;
     }
 
-    /* ---------- MAIN CARD (glass white, same as main) ---------- */
+    /* ---------- MAIN CARD ---------- */
     .glass {
       width: 100%;
       padding: 40px 36px;
@@ -173,12 +210,17 @@
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
       border: 1px solid rgba(255, 255, 255, 0.9);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.02);
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.04),
+        0 8px 24px rgba(0, 0, 0, 0.02);
       animation: panelAnim 0.8s ease;
       transition: box-shadow 0.4s;
     }
+
     .glass:hover {
-      box-shadow: 0 30px 80px rgba(108, 92, 231, 0.06), 0 8px 24px rgba(0, 0, 0, 0.02);
+      box-shadow:
+        0 30px 80px rgba(108, 92, 231, 0.06),
+        0 8px 24px rgba(0, 0, 0, 0.02);
     }
 
     /* ---------- SECTION HEADER ---------- */
@@ -188,6 +230,7 @@
       gap: 16px;
       margin-bottom: 30px;
     }
+
     .section-icon {
       width: 52px;
       height: 52px;
@@ -199,16 +242,19 @@
       box-shadow: 0 8px 24px rgba(108, 92, 231, 0.2);
       flex-shrink: 0;
     }
+
     .section-icon i {
       font-size: 24px;
       color: #fff;
     }
+
     .section-header h2 {
       font-size: 22px;
       font-weight: 700;
       color: #2d2f4a;
       letter-spacing: 0.3px;
     }
+
     .section-header p {
       color: #8c92b3;
       font-size: 12px;
@@ -216,14 +262,14 @@
       font-weight: 400;
     }
 
-    /* ---------- VIDEO LIST (grid) ---------- */
+    /* ---------- VIDEO LIST ---------- */
     .video-list {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
     }
 
-    /* ---------- VIDEO CARD (updated tiles) ---------- */
+    /* ---------- VIDEO CARD ---------- */
     .video-card {
       display: flex;
       flex-direction: column;
@@ -237,11 +283,12 @@
       position: relative;
       gap: 12px;
     }
+
     .video-card:hover {
       transform: translateY(-4px);
       background: #ffffff;
       border-color: #6c5ce7;
-      box-shadow: 0 12px 40px rgba(108, 92, 231, 0.10);
+      box-shadow: 0 12px 40px rgba(108, 92, 231, 0.1);
     }
 
     .video-top {
@@ -249,6 +296,7 @@
       align-items: center;
       gap: 12px;
     }
+
     .video-icon {
       width: 44px;
       height: 44px;
@@ -260,6 +308,7 @@
       flex-shrink: 0;
       box-shadow: 0 4px 16px rgba(108, 92, 231, 0.15);
     }
+
     .video-icon i {
       font-size: 20px;
       color: #fff;
@@ -271,6 +320,7 @@
       color: #2d2f4a;
       line-height: 1.3;
     }
+
     .video-info p {
       color: #4a506b;
       font-size: 12px;
@@ -284,6 +334,7 @@
       justify-content: flex-end;
       margin-top: 4px;
     }
+
     .arrow {
       width: 32px;
       height: 32px;
@@ -296,6 +347,7 @@
       transition: 0.3s ease;
       border: 1px solid rgba(108, 92, 231, 0.06);
     }
+
     .video-card:hover .arrow {
       background: #6c5ce7;
       color: #fff;
@@ -303,37 +355,7 @@
       box-shadow: 0 4px 16px rgba(108, 92, 231, 0.2);
     }
 
-    /* ---------- COMING SOON (disabled) ---------- */
-    .disabled {
-      cursor: default;
-      opacity: 0.5;
-    }
-    .disabled:hover {
-      transform: none !important;
-      background: rgba(255, 255, 255, 0.5) !important;
-      border-color: rgba(255, 255, 255, 0.6) !important;
-      box-shadow: none !important;
-    }
-    .disabled .video-icon {
-      background: linear-gradient(135deg, #b2b7cc, #c8cdde);
-      box-shadow: none;
-    }
-    .disabled .arrow {
-      background: rgba(0, 0, 0, 0.03);
-      color: #b2b7cc;
-    }
-    .coming-badge {
-      padding: 2px 12px;
-      border-radius: 30px;
-      background: rgba(108, 92, 231, 0.08);
-      color: #6c5ce7;
-      font-size: 9px;
-      font-weight: 600;
-      white-space: nowrap;
-      border: 1px solid rgba(108, 92, 231, 0.06);
-    }
-
-    /* ---------- FOOTER (matching main) ---------- */
+    /* ---------- FOOTER ---------- */
     .footer {
       margin-top: 35px;
       color: #8c92b3;
@@ -346,55 +368,143 @@
       border: 1px solid rgba(255, 255, 255, 0.6);
       transition: color 0.3s;
     }
+
     .footer:hover {
       color: #5a5f7a;
     }
 
     /* ---------- ANIMATIONS ---------- */
     @keyframes titleAnim {
-      from { opacity: 0; transform: translateY(-20px) scale(0.95); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
+
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
     @keyframes panelAnim {
-      from { opacity: 0; transform: translateY(20px) scale(0.97); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     /* ---------- RESPONSIVE ---------- */
     @media (max-width: 680px) {
-      body { padding: 20px 12px; }
-      .back { font-size: 12px; padding: 8px 16px; }
-      .title { font-size: 38px; }
-      .subtitle { font-size: 13px; padding: 6px 16px; margin-bottom: 25px; }
-      .glass { padding: 24px 16px; border-radius: 24px; }
-      .section-header { gap: 12px; margin-bottom: 22px; }
-      .section-icon { width: 44px; height: 44px; border-radius: 14px; }
-      .section-icon i { font-size: 18px; }
-      .section-header h2 { font-size: 18px; }
-      .section-header p { font-size: 10px; }
-      .video-list { grid-template-columns: 1fr; gap: 12px; }
-      .video-card { padding: 16px; }
-      .video-icon { width: 40px; height: 40px; }
-      .video-icon i { font-size: 18px; }
-      .video-info h3 { font-size: 14px; }
-      .video-info p { font-size: 11px; }
-      .coming-badge { display: none; }
+      body {
+        padding: 20px 12px;
+      }
+
+      .back {
+        font-size: 12px;
+        padding: 8px 16px;
+      }
+
+      .title {
+        font-size: 38px;
+      }
+
+      .subtitle {
+        font-size: 13px;
+        padding: 6px 16px;
+        margin-bottom: 25px;
+      }
+
+      .glass {
+        padding: 24px 16px;
+        border-radius: 24px;
+      }
+
+      .section-header {
+        gap: 12px;
+        margin-bottom: 22px;
+      }
+
+      .section-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+      }
+
+      .section-icon i {
+        font-size: 18px;
+      }
+
+      .section-header h2 {
+        font-size: 18px;
+      }
+
+      .section-header p {
+        font-size: 10px;
+      }
+
+      .video-list {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .video-card {
+        padding: 16px;
+      }
+
+      .video-icon {
+        width: 40px;
+        height: 40px;
+      }
+
+      .video-icon i {
+        font-size: 18px;
+      }
+
+      .video-info h3 {
+        font-size: 14px;
+      }
+
+      .video-info p {
+        font-size: 11px;
+      }
     }
 
     @media (max-width: 400px) {
-      .title { font-size: 30px; }
-      .glass { padding: 16px 12px; }
-      .video-card { padding: 14px; }
+      .title {
+        font-size: 30px;
+      }
+
+      .glass {
+        padding: 16px 12px;
+      }
+
+      .video-card {
+        padding: 14px;
+      }
     }
   </style>
 </head>
+
 <body>
 
-  <!-- FLOATING ORBS (matching main page) -->
+  <!-- FLOATING ORBS -->
   <div class="orb one"></div>
   <div class="orb two"></div>
   <div class="orb three"></div>
@@ -409,7 +519,10 @@
 
     <!-- TITLE -->
     <h1 class="title">UTAS Rules</h1>
-    <p class="subtitle">شرح وتوضيح أهم الإجراءات والقوانين للطلبة</p>
+
+    <p class="subtitle">
+      شرح وتوضيح أهم الإجراءات والقوانين للطلبة
+    </p>
 
     <!-- MAIN CARD -->
     <div class="glass">
@@ -419,6 +532,7 @@
         <div class="section-icon">
           <i class="fa-solid fa-graduation-cap"></i>
         </div>
+
         <div>
           <h2>شروحات وإجراءات UTAS</h2>
           <p>اضغط على الشرح لفتح الفيديو</p>
@@ -428,485 +542,668 @@
       <!-- VIDEO GRID -->
       <div class="video-list">
 
-
-<!-- 1. COURSE DROP -->
-<a href="https://www.instagram.com/reel/DPV2esdiPyt/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-file-circle-minus"></i></div>
-    <div class="video-info">
-      <h3>طريقة تقديم طلب حذف مقرر دراسي</h3>
-      <p>How to submit a request to drop a course.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-
-
-        <!-- 2. SEMESTER POSTPONE -->
-        <a href="https://www.instagram.com/reel/DPWiP3yCAlR/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-           target="_blank" class="video-card">
+        <!-- 1. حذف مقرر دراسي -->
+        <a
+          href="https://www.instagram.com/reel/DPV2esdiPyt/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
           <div class="video-top">
-            <div class="video-icon"><i class="fa-solid fa-calendar-xmark"></i></div>
+            <div class="video-icon">
+              <i class="fa-solid fa-file-circle-minus"></i>
+            </div>
+
             <div class="video-info">
-              <h3>طلب تأجيل الفصل الدراسي</h3>
-              <p>طريقة تقديم طلب تأجيل الفصل الدراسي.</p>
+              <h3>طريقة تقديم طلب حذف مقرر دراسي</h3>
+              <p>How to submit a request to drop a course.</p>
             </div>
           </div>
+
           <div class="arrow-row">
-            <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
           </div>
         </a>
 
 
-<!-- 3. TRANSFER -->
-<a href="https://www.instagram.com/reel/DPwbB-fCGCM/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-right-left"></i></div>
-    <div class="video-info">
-      <h3>طريقة تقديم طلب النقل بين الفروع</h3>
-      <p>How to submit a request to transfer between UTAS branches.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-
-
-
-
-<!-- 4. SPECIALIZATION CHANGE -->
-<a href="https://www.instagram.com/reel/Dcq0mTwAI1L/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-shuffle"></i></div>
-    <div class="video-info">
-      <h3>طريقة تقديم طلب تغيير التخصص</h3>
-      <p>How to submit a request to change your specialization.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</div>
-</a>
-
-
-
-<!-- 11. تظلم على النتائج -->
-<a href="https://www.instagram.com/reel/DTqyvk4AP1C/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-    <div class="video-info">
-      <h3> (درجات) طريقة تقديم تظلم على النتائج</h3>
-      <p>How to submit an appeal regarding your results (grades).</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-
-
-
-<!-- 6. إخلاء طرف -->
-<a href="https://www.instagram.com/reel/DTXr0PoiK8k/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-file-circle-check"></i></div>
-    <div class="video-info">
-      <h3>طريقة عمل إخلاء طرف</h3>
-      <p>How to complete the university clearance process.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-
-
-
-<!-- 4. رفع عذر لاختبار الإعادة -->
-<a href="https://www.instagram.com/reel/DQHV48AiAou/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-file-pen"></i></div>
-    <div class="video-info">
-      <h3>طريقة رفع عذر لاختبار الإعادة</h3>
-      <p>How to submit an excuse for a make-up exam.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-
-
-
-<!-- 17. فتح موقع CIMS بوضعية الكمبيوتر -->
-<a href="https://www.instagram.com/reel/DUsJ6ikgG0A/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-display"></i></div>
-    <div class="video-info">
-      <h3> بوضعية الكمبيوتر (CIMS) طريقة فتح موقع </h3>
-      <p>How to open the CIMS website in desktop mode on your phone.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-
-
-
-<!-- 14. طريقة مشاهدة المواد و السكاشن -->
-<a href="https://www.instagram.com/reel/DUFY6sPCL_I/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-eye"></i></div>
-    <div class="video-info">
-      <h3>طريقة مشاهدة المواد والسكاشن</h3>
-      <p>How to view courses and class sections in the system.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-
-
-<!-- 16. تسجيل السكاشن لطلاب التخصص والفاونديشن -->
-<a href="https://www.instagram.com/reel/DUUxt0AiLuh/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-pen-to-square"></i></div>
-    <div class="video-info">
-      <h3>طريقة تسجيل السكاشن لطلاب التخصص والفاونديشن</h3>
-      <p>How to register for class sections for specialization and foundation students.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-
-
-
-<!-- 15. برنامج يضبط الجدول والسكاشن -->
-<a href="https://www.instagram.com/reel/DUKtE6DCGYr/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-clock"></i></div>
-    <div class="video-info">
-      <h3>برنامج يضبط لك الجدول والسكاشن</h3>
-      <p>A program that helps you organize your schedule and class sections.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-
-
-
-<!-- 12. الحد الأقصى لكل مستوى دراسي -->
-<a href="https://www.instagram.com/reel/DT-mf4aCGFR/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-list-check"></i></div>
-    <div class="video-info">
-      <h3>الحد الأقصى لكل مستوى دراسي</h3>
-      <p>Explanation of the maximum study period allowed for each study level.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-
-<!-- 10. لوحة الشرف و تكريم المجيدين -->
-<a href="https://www.instagram.com/reel/DTpLNayCHTl/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-award"></i></div>
-    <div class="video-info">
-      <h3>لوحة الشرف وتكريم المجيدين</h3>
-      <p>Explanation of the Honor Roll and student recognition.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-
-
-<!-- 9. التدريب على رأس العمل OJT -->
-<a href="https://www.instagram.com/reel/DTn30wsgN9h/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-briefcase"></i></div>
-    <div class="video-info">
-      <h3> (OJT) شرح كل ما يخص التدريب على رأس العمل </h3>
-      <p>Everything you need to know about On-the-Job Training (OJT).</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-
-
-
-<!-- 8. قوانين ونظام الفاونديشن -->
-<a href="https://www.instagram.com/reel/DTpRXNNAFiE/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-book-open"></i></div>
-    <div class="video-info">
-      <h3>شرح قوانين ونظام الفاونديشن</h3>
-      <p>Explanation of Foundation rules and regulations.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</div>
-</a>
-
-
-
-<!-- 7. نظام الرسوب والإعادة لطلبة الفاونديشن -->
-<a href="https://www.instagram.com/reel/DTqqfoEAF-6/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-rotate-right"></i></div>
-    <div class="video-info">
-      <h3>نظام الرسوب والإعادة لطلبة الفاونديشن</h3>
-      <p>Explanation of the failure and retake system for Foundation students.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-
-
-
-<!-- 5. تحت الملاحظة الأكاديمية -->
-<a href="https://www.instagram.com/reel/DTPyNpRCJ3g/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
-    <div class="video-info">
-      <h3>تحت الملاحظة الأكاديمية</h3>
-      <p>Explanation of the Academic Probation status.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-
-
-
-<!-- 4. فرص الطالب تحت الملاحظة الأكاديمية -->
-<a href="https://www.instagram.com/reel/DZ0jE0WqxoZ/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-repeat"></i></div>
-    <div class="video-info">
-      <h3>كم فرصة للطالب تحت الملاحظة الأكاديمية؟</h3>
-      <p>Explanation of the available chances for students under Academic Probation.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-
-
-
-<!-- 3. الانتقال بين المستويات - النظام القديم والجديد -->
-<a href="https://www.instagram.com/reel/DZukzLaAmWH/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
-    <div class="video-info">
-      <h3>فرق المعدل الانتقال بين المستويات النظام القديم والجديد</h3>
-      <p>Explanation of the changes in level progression between the old and new systems.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-
-
-
-<!-- 7. شرح عن المعدل GPA -->
-<a href="https://www.instagram.com/reel/DTQsBW8ADxv/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-calculator"></i></div>
-    <div class="video-info">
-      <h3>(GPA) شرح كل اللي يخص المعدل </h3>
-      <p>Complete explanation of the GPA and cumulative GPA system.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-
-
-
-<!-- 8. طريقة حساب المعدل -->
-<a href="https://www.instagram.com/reel/DTmq4KaCMF3/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-calculator"></i></div>
-    <div class="video-info">
-      <h3>(GPA) طريقة حساب المعدل </h3>
-      <p>Step-by-step explanation of how to calculate your GPA.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-
-
-
-<!-- 2. طريقة مذاكرة مواد ثيوري -->
-<a href="https://www.instagram.com/reel/DRPeCE9iAxf/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-book"></i></div>
-    <div class="video-info">
-      <h3>طريقة مذاكرة مواد الثيوري</h3>
-      <p>Tips and methods for studying theory-based courses effectively.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-
-
-<!-- 1. معرفة المستوى الدراسي لطلبة الفاونديشن -->
-<a href="https://www.instagram.com/reel/DTqsCfgAKin/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-    <div class="video-info">
-      <h3>كيف تعرف مستواك: دبلوم، دبلوم عالي أو بكالوريوس؟</h3>
-      <p>How Foundation students can identify their Diploma, Higher Diploma, or Bachelor level.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-
-
-<!-- طريقة عمل سيرة ذاتية -->
-<a href="https://www.instagram.com/reel/DZ-Xfmgg9wA/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-file-lines"></i></div>
-    <div class="video-info">
-      <h3>(CV) طريقة عمل سيرة ذاتية</h3>
-      <p>Step-by-step guide on how to create a professional CV.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-
-
-      
-
-<!-- مشاهدة المعدل الجديد قبل نزول النتائج -->
-<a href="https://www.instagram.com/reel/DZpOByLKKHI/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-chart-line"></i></div>
-    <div class="video-info">
-      <h3>(جزء الاول) كيف تشوف معدلك الجديد قبل نزول النتائج؟</h3>
-      <p>How to check your new GPA before the official results are released.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-
-
-<!-- مشاهدة المعدل الجديد قبل نزول النتائج -->
-<a href="https://www.instagram.com/reel/DZpZga7qrfb/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
-   target="_blank" class="video-card">
-  <div class="video-top">
-    <div class="video-icon"><i class="fa-solid fa-chart-line"></i></div>
-    <div class="video-info">
-      <h3>(جزء الثاني) كيف تشوف معدلك الجديد قبل نزول النتائج؟</h3>
-      <p>How to check your new GPA before the official results are released.</p>
-    </div>
-  </div>
-  <div class="arrow-row">
-    <div class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-  </div>
-</a>
-        
-       
-
-       
-
-       
-
-
-
-      
-
-
-
-
-
-
-
-
-      
-
-
-
-      
-
-       
-
- 
-
-       
-
-
+        <!-- 2. تأجيل الفصل الدراسي -->
+        <a
+          href="https://www.instagram.com/reel/DPWiP3yCAlR/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-calendar-xmark"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>طريقة تقديم طلب تأجيل الفصل الدراسي</h3>
+              <p>How to submit a semester postponement request.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 3. النقل بين الفروع -->
+        <a
+          href="https://www.instagram.com/reel/DPwbB-fCGCM/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-right-left"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>طريقة تقديم طلب النقل بين الفروع</h3>
+              <p>How to submit a request to transfer between UTAS branches.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 4. تغيير التخصص -->
+        <a
+          href="https://www.instagram.com/reel/Dcq0mTwAI1L/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-shuffle"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>طريقة تقديم طلب تغيير التخصص</h3>
+              <p>How to submit a request to change your specialization.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 5. التظلم على النتائج -->
+        <a
+          href="https://www.instagram.com/reel/DTqyvk4AP1C/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-scale-balanced"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>طريقة تقديم تظلم على النتائج (درجات)</h3>
+              <p>How to submit an appeal regarding your results (grades).</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 6. إخلاء طرف -->
+        <a
+          href="https://www.instagram.com/reel/DTXr0PoiK8k/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-file-circle-check"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>طريقة عمل إخلاء طرف</h3>
+              <p>How to complete the university clearance process.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 7. عذر اختبار الإعادة -->
+        <a
+          href="https://www.instagram.com/reel/DQHV48AiAou/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-file-pen"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>طريقة رفع عذر لاختبار الإعادة</h3>
+              <p>How to submit an excuse for a make-up exam.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 8. فتح CIMS بوضعية الكمبيوتر -->
+        <a
+          href="https://www.instagram.com/reel/DUsJ6ikgG0A/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-display"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>طريقة فتح موقع CIMS بوضعية الكمبيوتر</h3>
+              <p>How to open the CIMS website in desktop mode on your phone.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 9. مشاهدة المواد والسكاشن -->
+        <a
+          href="https://www.instagram.com/reel/DUFY6sPCL_I/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-eye"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>طريقة مشاهدة المواد والسكاشن</h3>
+              <p>How to view courses and class sections in the system.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 10. تسجيل السكاشن -->
+        <a
+          href="https://www.instagram.com/reel/DUUxt0AiLuh/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>طريقة تسجيل السكاشن لطلاب التخصص والفاونديشن</h3>
+              <p>How to register for class sections for specialization and foundation students.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 11. برنامج تنظيم الجدول والسكاشن -->
+        <a
+          href="https://www.instagram.com/reel/DUKtE6DCGYr/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>برنامج يضبط لك الجدول والسكاشن</h3>
+              <p>A program that helps you organize your schedule and class sections.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 12. الحد الأقصى لكل مستوى دراسي -->
+        <a
+          href="https://www.instagram.com/reel/DT-mf4aCGFR/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-list-check"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>الحد الأقصى لكل مستوى دراسي</h3>
+              <p>Explanation of the maximum study period allowed for each study level.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 13. لوحة الشرف -->
+        <a
+          href="https://www.instagram.com/reel/DTpLNayCHTl/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-award"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>لوحة الشرف وتكريم المجيدين</h3>
+              <p>Explanation of the Honor Roll and student recognition.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 14. OJT -->
+        <a
+          href="https://www.instagram.com/reel/DTn30wsgN9h/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-briefcase"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>شرح كل ما يخص التدريب على رأس العمل (OJT)</h3>
+              <p>Everything you need to know about On-the-Job Training (OJT).</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 15. قوانين ونظام الفاونديشن -->
+        <a
+          href="https://www.instagram.com/reel/DTpRXNNAFiE/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-book-open"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>شرح قوانين ونظام الفاونديشن</h3>
+              <p>Explanation of Foundation rules and regulations.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 16. الرسوب والإعادة للفاونديشن -->
+        <a
+          href="https://www.instagram.com/reel/DTqqfoEAF-6/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-rotate-right"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>نظام الرسوب والإعادة لطلبة الفاونديشن</h3>
+              <p>Explanation of the failure and retake system for Foundation students.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 17. الملاحظة الأكاديمية -->
+        <a
+          href="https://www.instagram.com/reel/DTPyNpRCJ3g/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>تحت الملاحظة الأكاديمية</h3>
+              <p>Explanation of the Academic Probation status.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 18. فرص الطالب تحت الملاحظة الأكاديمية -->
+        <a
+          href="https://www.instagram.com/reel/DZ0jE0WqxoZ/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-repeat"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>كم فرصة للطالب تحت الملاحظة الأكاديمية؟</h3>
+              <p>Explanation of the available chances for students under Academic Probation.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 19. الانتقال بين المستويات - النظام القديم والجديد -->
+        <a
+          href="https://www.instagram.com/reel/DZukzLaAmWH/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-arrow-right-arrow-left"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>فرق المعدل والانتقال بين المستويات في النظام القديم والجديد</h3>
+              <p>Explanation of the changes in level progression between the old and new systems.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 20. شرح GPA -->
+        <a
+          href="https://www.instagram.com/reel/DTQsBW8ADxv/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-calculator"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>شرح كل اللي يخص المعدل (GPA)</h3>
+              <p>Complete explanation of the GPA and cumulative GPA system.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 21. طريقة حساب GPA -->
+        <a
+          href="https://www.instagram.com/reel/DTmq4KaCMF3/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-calculator"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>طريقة حساب المعدل (GPA)</h3>
+              <p>Step-by-step explanation of how to calculate your GPA.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 22. مذاكرة مواد الثيوري -->
+        <a
+          href="https://www.instagram.com/reel/DRPeCE9iAxf/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-book"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>طريقة مذاكرة مواد الثيوري</h3>
+              <p>Tips and methods for studying theory-based courses effectively.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 23. معرفة المستوى الدراسي لطلبة الفاونديشن -->
+        <a
+          href="https://www.instagram.com/reel/DTqsCfgAKin/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>كيف تعرف مستواك: دبلوم، دبلوم عالي أو بكالوريوس؟</h3>
+              <p>How Foundation students can identify their Diploma, Higher Diploma, or Bachelor level.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 24. السيرة الذاتية CV -->
+        <a
+          href="https://www.instagram.com/reel/DZ-Xfmgg9wA/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-file-lines"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>طريقة عمل سيرة ذاتية (CV)</h3>
+              <p>Step-by-step guide on how to create a professional CV.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 25. مشاهدة المعدل الجديد - الجزء الأول -->
+        <a
+          href="https://www.instagram.com/reel/DZpOByLKKHI/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>كيف تشوف معدلك الجديد قبل نزول النتائج؟ (الجزء الأول)</h3>
+              <p>How to check your new GPA before the official results are released.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
+
+
+        <!-- 26. مشاهدة المعدل الجديد - الجزء الثاني -->
+        <a
+          href="https://www.instagram.com/reel/DZpZga7qrfb/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+          target="_blank"
+          class="video-card"
+        >
+          <div class="video-top">
+            <div class="video-icon">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+
+            <div class="video-info">
+              <h3>كيف تشوف معدلك الجديد قبل نزول النتائج؟ (الجزء الثاني)</h3>
+              <p>How to check your new GPA before the official results are released.</p>
+            </div>
+          </div>
+
+          <div class="arrow-row">
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </a>
 
       </div>
     </div>
 
     <!-- FOOTER -->
-        <div class="footer">
-            © <span id="year"></span> سلمان يوتاسا 
-        </div>
+    <footer class="footer">
+      © <span id="year"></span> سلمان يوتاسا
+    </footer>
 
   </div>
 
+  <!-- YEAR -->
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 
 </body>
