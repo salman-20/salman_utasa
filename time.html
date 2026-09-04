@@ -1,255 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>📅 Timetable Clash Finder · Al Musanna</title>
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Font Awesome & pdf.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
-    }
-    body {
-      background: #f4f7fc;
-      min-height: 100vh;
-      padding: 24px 20px 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .container {
-      max-width: 1400px;
-      width: 100%;
-      background: white;
-      border-radius: 32px;
-      box-shadow: 0 20px 40px rgba(0,20,50,0.08);
-      padding: 28px 30px 40px;
-      transition: 0.2s;
-    }
-    h1 {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 600;
-      font-size: 1.9rem;
-      color: #0b2a4a;
-      letter-spacing: -0.3px;
-      margin-bottom: 8px;
-    }
-    h1 i {
-      color: #2a6f97;
-      font-size: 2rem;
-    }
-    .sub {
-      color: #3b5e7a;
-      margin-bottom: 28px;
-      border-left: 4px solid #3b8fc2;
-      padding-left: 18px;
-      font-weight: 400;
-      background: #eef5fa;
-      border-radius: 0 16px 16px 0;
-      line-height: 1.5;
-      font-size: 0.95rem;
-    }
-    .upload-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px 30px;
-      background: #f0f5fe;
-      padding: 24px 28px;
-      border-radius: 28px;
-      margin-bottom: 32px;
-      align-items: flex-end;
-    }
-    .file-box {
-      flex: 1 1 200px;
-    }
-    .file-box label {
-      display: block;
-      font-weight: 600;
-      color: #1c3d5a;
-      margin-bottom: 6px;
-      font-size: 0.9rem;
-      letter-spacing: 0.3px;
-    }
-    .file-box input {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid #cbdbe9;
-      border-radius: 60px;
-      background: white;
-      font-size: 0.9rem;
-      transition: 0.2s;
-    }
-    .file-box input:focus {
-      border-color: #2a7faa;
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(42,127,170,0.2);
-    }
-    .action-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-      margin-top: 6px;
-    }
-    .btn {
-      background: white;
-      border: none;
-      padding: 12px 28px;
-      border-radius: 60px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: #1a3b55;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.02);
-      border: 1px solid #d0dfec;
-      cursor: pointer;
-      transition: 0.15s;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .btn-primary {
-      background: #1f5575;
-      border-color: #1f5575;
-      color: white;
-      box-shadow: 0 6px 12px rgba(26, 80, 120, 0.2);
-    }
-    .btn-primary i { color: white; }
-    .btn-primary:hover { background: #13425f; transform: scale(0.97); }
-    .btn-outline { background: transparent; border: 1px solid #b2cbdf; }
-    .btn-outline:hover { background: #e3edf7; }
-    .btn:disabled { opacity: 0.5; pointer-events: none; filter: grayscale(0.3); }
-    .filter-section {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 16px 24px;
-      background: white;
-      padding: 16px 22px;
-      border-radius: 60px;
-      margin: 10px 0 28px;
-      border: 1px solid #dae7f2;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-    }
-    .filter-section label {
-      font-weight: 500;
-      color: #1f4460;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .filter-section select, .filter-section input {
-      padding: 10px 16px;
-      border-radius: 40px;
-      border: 1px solid #c7d8e7;
-      background: #fafcff;
-      font-size: 0.9rem;
-      min-width: 160px;
-    }
-    .filter-section select:focus, .filter-section input:focus {
-      border-color: #2a7faa;
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(42,127,170,0.15);
-    }
-    .badge-info {
-      background: #e5f0fa;
-      padding: 6px 14px;
-      border-radius: 40px;
-      font-size: 0.85rem;
-      color: #1b4a6b;
-      font-weight: 500;
-    }
-    .timetable-grid {
-      overflow-x: auto;
-      margin-top: 10px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.02);
-    }
-    th {
-      background: #e7f0fa;
-      color: #13324a;
-      font-weight: 600;
-      padding: 14px 8px;
-      border: 1px solid #d7e3ef;
-      text-align: center;
-    }
-    td {
-      padding: 12px 8px;
-      border: 1px solid #deeaf5;
-      vertical-align: middle;
-      background: white;
-    }
-    .slot-card {
-      background: #f6faff;
-      border-radius: 14px;
-      padding: 6px 10px;
-      margin: 3px 0;
-      font-size: 0.8rem;
-      border-left: 4px solid #3b8fc2;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
-    }
-    .slot-card strong { display: block; color: #07314a; }
-    .lecture-name { color: #1d5b7a; font-weight: 500; }
-    .room { color: #3c6e8c; }
-    .empty-message {
-      color: #849eb3;
-      font-style: italic;
-      padding: 8px 0;
-    }
-    .clash-badge {
-      background: #c44536;
-      color: white;
-      border-radius: 40px;
-      padding: 2px 12px;
-      font-size: 0.7rem;
-      font-weight: 600;
-    }
-    .footer-note {
-      margin-top: 32px;
-      color: #50758f;
-      font-size: 0.9rem;
-      border-top: 1px solid #dce8f2;
-      padding-top: 24px;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-    .count-badge {
-      background: #dce8f2;
-      border-radius: 60px;
-      padding: 6px 18px;
-    }
-    @media (max-width: 700px) {
-      .container { padding: 16px; }
-      .filter-section { border-radius: 28px; flex-direction: column; align-items: stretch; }
-    }
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',Roboto,system-ui,sans-serif; }
+    body { background:#f4f7fc; min-height:100vh; padding:24px 20px 40px; display:flex; flex-direction:column; align-items:center; }
+    .container { max-width:1400px; width:100%; background:white; border-radius:32px; box-shadow:0 20px 40px rgba(0,20,50,0.08); padding:28px 30px 40px; }
+    h1 { display:flex; align-items:center; gap:12px; font-weight:600; font-size:1.9rem; color:#0b2a4a; letter-spacing:-0.3px; margin-bottom:8px; }
+    h1 i { color:#2a6f97; font-size:2rem; }
+    .sub { color:#3b5e7a; margin-bottom:28px; border-left:4px solid #3b8fc2; padding-left:18px; font-weight:400; background:#eef5fa; border-radius:0 16px 16px 0; line-height:1.5; font-size:0.95rem; }
+    .upload-grid { display:flex; flex-wrap:wrap; gap:24px 30px; background:#f0f5fe; padding:24px 28px; border-radius:28px; margin-bottom:32px; align-items:flex-end; }
+    .file-box { flex:1 1 200px; }
+    .file-box label { display:block; font-weight:600; color:#1c3d5a; margin-bottom:6px; font-size:0.9rem; letter-spacing:0.3px; }
+    .file-box input { width:100%; padding:12px 14px; border:1px solid #cbdbe9; border-radius:60px; background:white; font-size:0.9rem; transition:0.2s; }
+    .file-box input:focus { border-color:#2a7faa; outline:none; box-shadow:0 0 0 3px rgba(42,127,170,0.2); }
+    .action-buttons { display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-top:6px; }
+    .btn { background:white; border:none; padding:12px 28px; border-radius:60px; font-weight:600; font-size:0.95rem; color:#1a3b55; box-shadow:0 4px 8px rgba(0,0,0,0.02); border:1px solid #d0dfec; cursor:pointer; transition:0.15s; display:inline-flex; align-items:center; gap:10px; }
+    .btn-primary { background:#1f5575; border-color:#1f5575; color:white; box-shadow:0 6px 12px rgba(26,80,120,0.2); }
+    .btn-primary i { color:white; }
+    .btn-primary:hover { background:#13425f; transform:scale(0.97); }
+    .btn-outline { background:transparent; border:1px solid #b2cbdf; }
+    .btn-outline:hover { background:#e3edf7; }
+    .btn:disabled { opacity:0.5; pointer-events:none; filter:grayscale(0.3); }
+    .filter-section { display:flex; flex-wrap:wrap; align-items:center; gap:16px 24px; background:white; padding:16px 22px; border-radius:60px; margin:10px 0 28px; border:1px solid #dae7f2; box-shadow:0 2px 6px rgba(0,0,0,0.02); }
+    .filter-section label { font-weight:500; color:#1f4460; display:flex; align-items:center; gap:8px; }
+    .filter-section select, .filter-section input { padding:10px 16px; border-radius:40px; border:1px solid #c7d8e7; background:#fafcff; font-size:0.9rem; min-width:160px; }
+    .filter-section select:focus, .filter-section input:focus { border-color:#2a7faa; outline:none; box-shadow:0 0 0 3px rgba(42,127,170,0.15); }
+    .badge-info { background:#e5f0fa; padding:6px 14px; border-radius:40px; font-size:0.85rem; color:#1b4a6b; font-weight:500; }
+    .timetable-grid { overflow-x:auto; margin-top:10px; }
+    table { width:100%; border-collapse:collapse; font-size:0.85rem; background:white; border-radius:20px; box-shadow:0 6px 14px rgba(0,0,0,0.02); }
+    th { background:#e7f0fa; color:#13324a; font-weight:600; padding:14px 8px; border:1px solid #d7e3ef; text-align:center; }
+    td { padding:12px 8px; border:1px solid #deeaf5; vertical-align:middle; background:white; }
+    .slot-card { background:#f6faff; border-radius:14px; padding:6px 10px; margin:3px 0; font-size:0.8rem; border-left:4px solid #3b8fc2; box-shadow:0 1px 4px rgba(0,0,0,0.02); }
+    .slot-card strong { display:block; color:#07314a; }
+    .lecture-name { color:#1d5b7a; font-weight:500; }
+    .room { color:#3c6e8c; }
+    .empty-message { color:#849eb3; font-style:italic; padding:8px 0; }
+    .footer-note { margin-top:32px; color:#50758f; font-size:0.9rem; border-top:1px solid #dce8f2; padding-top:24px; display:flex; justify-content:space-between; flex-wrap:wrap; }
+    .count-badge { background:#dce8f2; border-radius:60px; padding:6px 18px; }
+    @media (max-width:700px) { .container { padding:16px; } .filter-section { border-radius:28px; flex-direction:column; align-items:stretch; } }
+    .loader { display:inline-block; width:20px; height:20px; border:3px solid #ccc; border-top-color:#1f5575; border-radius:50%; animation:spin 0.8s linear infinite; margin-right:8px; }
+    @keyframes spin { to { transform:rotate(360deg); } }
   </style>
 </head>
 <body>
 <div class="container" id="app">
   <h1><i class="fas fa-calendar-alt"></i> Clash‑free Timetable</h1>
-  <div class="sub"><i class="fas fa-upload" style="margin-right: 10px;"></i> Upload <strong>Report 1234.pdf</strong> (courses) and <strong>Report 123.pdf</strong> (timetable) — we generate all non‑clashing schedules.</div>
+  <div class="sub"><i class="fas fa-upload" style="margin-right:10px;"></i> Upload <strong>Report 1234.pdf</strong> (courses) and <strong>Report 123.pdf</strong> (timetable) — we generate all non‑clashing schedules.</div>
 
   <!-- Upload area -->
   <div class="upload-grid">
     <div class="file-box">
       <label><i class="fas fa-book-open"></i> Course report (1234.pdf)</label>
-      <input type="file" id="fileCourses" accept=".pdf">
+      <input type="file" id="fileCourses" accept=".pdf" />
     </div>
     <div class="file-box">
       <label><i class="fas fa-clock"></i> Timetable report (123.pdf)</label>
-      <input type="file" id="fileTimetable" accept=".pdf">
+      <input type="file" id="fileTimetable" accept=".pdf" />
     </div>
     <div class="action-buttons">
       <button class="btn btn-primary" id="btnGenerate"><i class="fas fa-play"></i> Generate schedules</button>
@@ -270,8 +82,8 @@
 
   <!-- Timetable output -->
   <div id="timetableContainer" class="timetable-grid">
-    <div style="text-align: center; padding: 60px 20px; color: #5a7e99;">
-      <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; opacity: 0.5; margin-bottom: 16px; display: block;"></i>
+    <div style="text-align:center; padding:60px 20px; color:#5a7e99;">
+      <i class="fas fa-cloud-upload-alt" style="font-size:3rem; opacity:0.5; margin-bottom:16px; display:block;"></i>
       Upload both PDFs and click <strong>Generate schedules</strong>
     </div>
   </div>
@@ -283,11 +95,10 @@
 
 <script>
   (function() {
-    // -----  state  -----
-    let rawCourses = [];         // [{code, name, hours}]
-    let rawLectures = [];       // [{course, day, time, room, lecturer, section}]
-    let allSchedules = [];      // array of { day: [ {course, time, room, lecturer} ] }
-    let currentFiltered = [];
+    // ----- state -----
+    let rawCourses = [];
+    let rawLectures = [];
+    let allSchedules = [];
     let selectedLecturer = 'all';
     let selectedCourse = 'all';
 
@@ -302,18 +113,40 @@
     const scheduleCount = document.getElementById('scheduleCount');
     const clashFreeCount = document.getElementById('clashFreeCount');
 
-    // -----  helpers (parse text from PDF)  -----
+    // ----- PDF text extraction using pdf.js -----
+    async function extractTextFromPDF(file) {
+      const arrayBuffer = await file.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+      let fullText = '';
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const content = await page.getTextContent();
+        const strings = content.items.map(item => item.str);
+        fullText += strings.join(' ') + '\n';
+      }
+      return fullText;
+    }
+
+    // ----- Parsers (more robust) -----
     function extractCoursesFromText(text) {
       const courses = [];
+      // look for lines like "CSDS3202 Introduction to Data Science 3"
       const lines = text.split(/\n/);
       for (let line of lines) {
-        // look for pattern like CSDS3202 Introduction to Data Science 3
-        const match = line.match(/([A-Z]{2,4}\d{4})\s+([A-Za-z\s\-&]+?)\s+(\d+)\s*$/);
+        const trimmed = line.trim();
+        // match course code (4 letters + 4 digits) followed by name and hours
+        const match = trimmed.match(/([A-Z]{4}\d{4})\s+([A-Za-z\s\-&]+?)\s+(\d+)\s*$/);
         if (match) {
           const code = match[1].trim();
           const name = match[2].trim();
           const hours = parseInt(match[3], 10);
           if (code && name) courses.push({ code, name, hours: hours || 3 });
+        } else {
+          // fallback: just code and name without hours
+          const fallback = trimmed.match(/([A-Z]{4}\d{4})\s+([A-Za-z\s\-&]+)/);
+          if (fallback) {
+            courses.push({ code: fallback[1].trim(), name: fallback[2].trim(), hours: 3 });
+          }
         }
       }
       return courses;
@@ -323,68 +156,74 @@
       const lectures = [];
       const lines = text.split(/\n/);
       let currentDay = null;
+      // We'll also try to detect days from the text
+      const dayKeywords = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
       for (let line of lines) {
         const trimmed = line.trim();
         if (!trimmed) continue;
-        // detect day headers
-        if (/sunday/i.test(trimmed)) currentDay = 'Sunday';
-        else if (/monday/i.test(trimmed)) currentDay = 'Monday';
-        else if (/tuesday/i.test(trimmed)) currentDay = 'Tuesday';
-        else if (/wednesday/i.test(trimmed)) currentDay = 'Wednesday';
-        else if (/thursday/i.test(trimmed)) currentDay = 'Thursday';
-        else if (/saturday/i.test(trimmed)) currentDay = 'Saturday';
 
-        // detect course code + time + room + lecturer
-        // e.g. "CSDS3202 Introduction to Data Science 14:00-16:00 - SA308\Mr. Sreejith Balakrishnan -SJ"
-        const lectureMatch = trimmed.match(/([A-Z]{2,4}\d{4})\s+([A-Za-z\s\-&]+?)\s+(\d{1,2}:\d{2}-\d{1,2}:\d{2})\s*-\s*([A-Z0-9]+)\\?([\w\s\.\-]+?)(?:\s*-\s*[A-Z]+)?$/);
-        if (lectureMatch && currentDay) {
-          const code = lectureMatch[1].trim();
-          const name = lectureMatch[2].trim();
-          const time = lectureMatch[3].trim();
-          const room = lectureMatch[4].trim();
-          let lecturer = lectureMatch[5] ? lectureMatch[5].trim() : 'Staff';
-          // clean trailing
+        // Check if line contains a day keyword
+        const lower = trimmed.toLowerCase();
+        for (let d of dayKeywords) {
+          if (lower.includes(d)) {
+            currentDay = d.charAt(0).toUpperCase() + d.slice(1);
+            break;
+          }
+        }
+
+        // Try to extract lecture info: course code + time + room + lecturer
+        // Pattern: "CSDS3202 Introduction to Data Science 14:00-16:00 - SA308\Mr. Sreejith Balakrishnan -SJ"
+        let match = trimmed.match(/([A-Z]{4}\d{4})\s+([A-Za-z\s\-&]+?)\s+(\d{1,2}:\d{2}-\d{1,2}:\d{2})\s*-\s*([A-Z0-9]+)\\?([\w\s\.\-]+?)(?:\s*-\s*[A-Z]+)?$/);
+        if (match && currentDay) {
+          const code = match[1].trim();
+          const name = match[2].trim();
+          const time = match[3].trim();
+          const room = match[4].trim();
+          let lecturer = match[5] ? match[5].trim() : 'Staff';
+          // clean trailing dash and initials
           lecturer = lecturer.replace(/\s*-\s*[A-Z]+$/, '').trim();
-          if (lecturer.length > 30) lecturer = lecturer.substring(0, 28);
+          if (lecturer.length > 40) lecturer = lecturer.substring(0, 38);
           lectures.push({
             course: code,
             name: name,
             day: currentDay,
             time: time,
             room: room,
-            lecturer: lecturer,
-            section: '1'
+            lecturer: lecturer
           });
         } else {
-          // fallback: try to catch lines like "14:00-16:00 - SA308\Mr. Sreejith"
+          // fallback: try to capture lines like "14:00-16:00 - SA308\Mr. Sreejith"
           const fallback = trimmed.match(/(\d{1,2}:\d{2}-\d{1,2}:\d{2})\s*-\s*([A-Z0-9]+)\\?([\w\s\.\-]+)/);
           if (fallback && currentDay) {
             const time = fallback[1].trim();
             const room = fallback[2].trim();
             let lecturer = fallback[3] ? fallback[3].trim() : 'Staff';
             lecturer = lecturer.replace(/\s*-\s*[A-Z]+$/, '').trim();
-            // find course from previous context? skip if no code.
-            // we try to match with previous course code if any
-            const prevCodeMatch = trimmed.match(/([A-Z]{2,4}\d{4})/);
-            if (prevCodeMatch) {
-              const code = prevCodeMatch[1].trim();
+            // Try to find course code nearby (maybe in same line)
+            const codeMatch = trimmed.match(/([A-Z]{4}\d{4})/);
+            if (codeMatch) {
+              const code = codeMatch[1].trim();
+              // name might be absent, try to get from course list later
               lectures.push({
                 course: code,
                 name: '',
                 day: currentDay,
                 time: time,
                 room: room,
-                lecturer: lecturer,
-                section: '1'
+                lecturer: lecturer
               });
+            } else {
+              // If no code, we might still add with unknown code, but we'll skip to avoid errors
             }
           }
         }
       }
+
+      // If we have lectures with missing names, try to fill from courses list later.
       return lectures;
     }
 
-    // -----  core: generate all non-clashing schedules (simple)  -----
+    // ----- core: generate schedules (backtracking) -----
     function generateSchedules(courses, lectures) {
       // group lectures by course code
       const courseMap = new Map();
@@ -393,27 +232,22 @@
         courseMap.get(lec.course).push(lec);
       });
 
-      // we want to pick exactly one lecture per course (if possible)
+      // we need at least one lecture per course
       const courseCodes = Array.from(courseMap.keys());
       const scheduleList = [];
 
-      // recursive backtracking: each level = one course
       function backtrack(index, currentSchedule) {
         if (index === courseCodes.length) {
-          // valid complete schedule
           scheduleList.push(currentSchedule.slice());
           return;
         }
         const code = courseCodes[index];
-        const possibleLectures = courseMap.get(code) || [];
-        if (possibleLectures.length === 0) {
-          // no lecture for this course? skip
+        const possible = courseMap.get(code) || [];
+        if (possible.length === 0) {
           backtrack(index + 1, currentSchedule);
           return;
         }
-        // try each lecture for this course
-        for (let lec of possibleLectures) {
-          // check clash with already selected lectures (same day, overlapping time)
+        for (let lec of possible) {
           let clash = false;
           for (let sel of currentSchedule) {
             if (sel.day === lec.day && isTimeOverlap(sel.time, lec.time)) {
@@ -434,22 +268,21 @@
     }
 
     function isTimeOverlap(t1, t2) {
-      // t format "14:00-16:00"
       const parse = (t) => {
         const parts = t.split('-');
         if (parts.length !== 2) return null;
         const start = parts[0].trim().split(':').map(Number);
         const end = parts[1].trim().split(':').map(Number);
-        if (start.length!==2 || end.length!==2) return null;
-        return { start: start[0]*60+start[1], end: end[0]*60+end[1] };
+        if (start.length !== 2 || end.length !== 2) return null;
+        return { start: start[0]*60 + start[1], end: end[0]*60 + end[1] };
       };
       const a = parse(t1), b = parse(t2);
       if (!a || !b) return false;
       return (a.start < b.end && b.start < a.end);
     }
 
-    // -----  render timetable  -----
-    function renderSchedules(schedules, lecturerFilter='all', courseFilter='all') {
+    // ----- render -----
+    function renderSchedules(schedules, lecturerFilterVal = 'all', courseFilterVal = 'all') {
       if (!schedules || schedules.length === 0) {
         timetableContainer.innerHTML = `<div style="padding:60px 20px; text-align:center; color:#6f8fa5;"><i class="fas fa-exclamation-triangle" style="font-size:2rem;"></i><br>No clash‑free schedules found.<br><small>Try uploading both reports.</small></div>`;
         scheduleCount.textContent = '0 schedules';
@@ -457,18 +290,15 @@
         return;
       }
 
-      // apply filters
       let filtered = schedules;
-      if (lecturerFilter !== 'all' || courseFilter !== 'all') {
+      if (lecturerFilterVal !== 'all' || courseFilterVal !== 'all') {
         filtered = schedules.filter(schedule => {
-          // schedule is array of lectures
-          if (lecturerFilter !== 'all' && !schedule.some(l => l.lecturer.toLowerCase().includes(lecturerFilter.toLowerCase()))) return false;
-          if (courseFilter !== 'all' && !schedule.some(l => l.course.toLowerCase().includes(courseFilter.toLowerCase()))) return false;
+          if (lecturerFilterVal !== 'all' && !schedule.some(l => l.lecturer.toLowerCase().includes(lecturerFilterVal.toLowerCase()))) return false;
+          if (courseFilterVal !== 'all' && !schedule.some(l => l.course.toLowerCase().includes(courseFilterVal.toLowerCase()))) return false;
           return true;
         });
       }
 
-      currentFiltered = filtered;
       scheduleCount.textContent = `${filtered.length} schedules`;
       clashFreeCount.textContent = `⚡ ${filtered.length} clash‑free`;
 
@@ -477,13 +307,11 @@
         return;
       }
 
-      // build table: days as columns
-      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'];
+      const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday'];
       let html = `<table><thead><tr><th>#</th>`;
       days.forEach(d => html += `<th>${d}</th>`);
       html += `</tr></thead><tbody>`;
 
-      // show up to 20 schedules (avoid huge DOM)
       const maxDisplay = Math.min(filtered.length, 30);
       for (let i = 0; i < maxDisplay; i++) {
         const schedule = filtered[i];
@@ -512,13 +340,12 @@
       timetableContainer.innerHTML = html;
     }
 
-    // -----  populate filter dropdowns  -----
+    // ----- populate filters -----
     function populateFilters(courses, lectures) {
       const lecturers = new Set();
       const courseNames = new Set();
       lectures.forEach(l => { if (l.lecturer) lecturers.add(l.lecturer); });
       lectures.forEach(l => { if (l.course) courseNames.add(l.course); });
-      // also from courses list
       courses.forEach(c => courseNames.add(c.code));
 
       lecturerFilter.innerHTML = `<option value="all">All lecturers</option>`;
@@ -532,43 +359,46 @@
       });
     }
 
-    // -----  main generation  -----
-    function handleGenerate() {
+    // ----- main generation with pdf parsing -----
+    async function handleGenerate() {
       const courseFile = fileCourses.files[0];
       const timeFile = fileTimetable.files[0];
       if (!courseFile || !timeFile) {
-        alert('Please upload both PDF files (Report 1234.pdf and Report 123.pdf)');
+        alert('Please upload both PDF files.');
         return;
       }
 
-      // read as text (simulate PDF text)
-      const reader1 = new FileReader();
-      const reader2 = new FileReader();
-      let courseText = '', timeText = '';
+      // Show loading
+      btnGenerate.innerHTML = '<span class="loader"></span> Processing...';
+      btnGenerate.disabled = true;
 
-      reader1.onload = (e) => { courseText = e.target.result; tryParse(); };
-      reader2.onload = (e) => { timeText = e.target.result; tryParse(); };
+      try {
+        const courseText = await extractTextFromPDF(courseFile);
+        const timeText = await extractTextFromPDF(timeFile);
 
-      function tryParse() {
-        if (!courseText || !timeText) return;
-        // parse
         rawCourses = extractCoursesFromText(courseText);
         rawLectures = extractLecturesFromText(timeText);
 
-        if (rawCourses.length === 0) console.warn('No courses parsed');
-        if (rawLectures.length === 0) console.warn('No lectures parsed');
+        // If some lectures have empty names, try to fill from courses
+        const courseMap = {};
+        rawCourses.forEach(c => courseMap[c.code] = c.name);
+        rawLectures.forEach(l => {
+          if (!l.name && courseMap[l.course]) l.name = courseMap[l.course];
+        });
 
-        // generate all schedules
         allSchedules = generateSchedules(rawCourses, rawLectures);
         populateFilters(rawCourses, rawLectures);
         renderSchedules(allSchedules, selectedLecturer, selectedCourse);
+      } catch (err) {
+        console.error(err);
+        alert('Error processing PDFs. Please ensure they are valid PDF files.');
+      } finally {
+        btnGenerate.innerHTML = '<i class="fas fa-play"></i> Generate schedules';
+        btnGenerate.disabled = false;
       }
-
-      reader1.readAsText(courseFile);
-      reader2.readAsText(timeFile);
     }
 
-    // -----  event bindings  -----
+    // ----- event binding -----
     btnGenerate.addEventListener('click', handleGenerate);
 
     btnClear.addEventListener('click', () => {
@@ -577,7 +407,6 @@
       rawCourses = [];
       rawLectures = [];
       allSchedules = [];
-      currentFiltered = [];
       timetableContainer.innerHTML = `<div style="text-align:center; padding:60px 20px; color: #5a7e99;"><i class="fas fa-cloud-upload-alt" style="font-size:3rem; opacity:0.5; display:block; margin-bottom:16px;"></i>Upload both PDFs and click <strong>Generate schedules</strong></div>`;
       scheduleCount.textContent = '0 schedules';
       clashFreeCount.textContent = '⚡ 0 clash‑free';
@@ -594,8 +423,7 @@
       renderSchedules(allSchedules, selectedLecturer, selectedCourse);
     });
 
-    // small demo notice
-    console.log('Al Musanna Timetable Clash Finder ready.');
+    console.log('Al Musanna Timetable Clash Finder ready with pdf.js');
   })();
 </script>
 </body>
